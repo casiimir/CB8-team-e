@@ -15,6 +15,7 @@ export default function Home() {
       </Head>
       <main>
         <h1>Hello world!</h1>
+        <p>Sto configurando il DB</p>
       </main>
     </>
   );

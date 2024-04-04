@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
+<<<<<<< HEAD
     enum: ["user", "business"],
   },
   businessName: {  
@@ -20,6 +21,17 @@ const UserSchema = new mongoose.Schema({
   },
   imageProfile: {
     type: String, 
+=======
+  },
+  // categoria type stringa o enum ["user", "organizzatore"]
+  businessName: {
+    type: String,
+    required: false,
+  },
+  // businessName e userName sono la stessa cosa?
+  imageProfile: {
+    type: String, // Stringa????
+>>>>>>> refs/remotes/origin/Database-configuration
     required: true,
     default: "img-default",
   },
@@ -49,6 +61,11 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+<<<<<<< HEAD
 
 module.exports =
   mongoose.models.User || mongoose.model("user", UserSchema);
+=======
+module.exports =
+  mongoose.models.UserSchema || mongoose.model("user", UserSchema);
+>>>>>>> refs/remotes/origin/Database-configuration

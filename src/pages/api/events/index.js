@@ -12,21 +12,19 @@ export default async function handler(req, res) {
       await newEvent(req, res);
     default:
       res.setHeader("Allow", ["GET", "POST"]);
-      res.status(405).end(`Metodo ${method} non accettato!`);
+      return res.status(405).end(`Metodo ${method} non accettato!`);
   }
 }
 
 async function getAllEvents(req, res) {
   try {
     const events = await Event.find();
-    return res.status(200).json({ success: "OK", data: events });
+    return res.status(200).json({ status: "OK", data: events });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        error: "Errore durante il recupero degli eventi",
-      });
+    return res.status(500).json({
+      status: "ERROR",
+      error: "Errore durante il recupero degli eventi!",
+    });
   }
 }
 
@@ -59,12 +57,10 @@ async function newEvent(req, res) {
       !capacity ||
       !organizer
     ) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          error: "Tutti i campi obbligatori devono essere forniti",
-        });
+      return res.status(400).json({
+        status: "ERROR",
+        error: "Tutti i campi obbligatori devono essere forniti!",
+      });
     }
 
     const newEvent = new Event({
@@ -83,11 +79,11 @@ async function newEvent(req, res) {
 
     await newEvent.save();
 
-    res.status(201).json({ newEvent });
+    return res.status(201).json({ status: "OK", data: newEvent });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: "Errore durante la creazione del nuovo evento",
+    return res.status(500).json({
+      status: "ERROR",
+      error: "Errore durante la creazione del nuovo evento!",
     });
   }
 }

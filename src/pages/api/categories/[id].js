@@ -15,9 +15,10 @@ export default async function handler(req, res) {
     case "PUT":
       await updateCategory(id, body, res);
     case "DELETE":
+      await deleteCategory(id, body, res);
     default:
       res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
-      res.status(405).end(`Metodo ${method} non accettato!`);
+      return res.status(405).end(`Metodo ${method} non accettato!`);
   }
 }
 
@@ -28,15 +29,15 @@ async function getCategory(id, res) {
     if (!category) {
       return res.status(404).json({
         status: "ERROR",
-        error: `L'elemento con id ${id} non è stato trovato `,
+        error: `La categoria con id ${id} non è stato trovato!`,
       });
     }
 
-    res.status(200).json({ status: "OK", data: category });
+    return res.status(200).json({ status: "OK", data: category });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       success: "ERROR",
-      error: "Errore durante il recupero della categoria",
+      error: "Errore durante il recupero della categoria!",
     });
   }
 }
@@ -66,12 +67,10 @@ async function deleteCategory(id, res) {
     const deletedCategory = await Category.deleteOne({ _id: id });
 
     if (!deletedCategory) {
-      return res
-        .status(404)
-        .json({
-          status: "OK",
-          error: `L'elemento con id ${id} non è stato trovato!`,
-        });
+      return res.status(404).json({
+        status: "OK",
+        error: `L'elemento con id ${id} non è stato trovato!`,
+      });
     }
     res.status(204).json({ status: "OK", data: deletedCategory });
   } catch (error) {

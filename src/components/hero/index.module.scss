@@ -1,0 +1,17 @@
+.Slider {
+  height: 200px;
+  margin: 20px;
+  background-image: url("/hero-image.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .Arrow {
+    font-size: 40px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}

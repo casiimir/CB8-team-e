@@ -1,0 +1,15 @@
+.TabBtn {
+  width: 80px;
+  height: 30px;
+  background-color: #f8f7fd;
+  color: #000000;
+  text-decoration: line-through;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.TabBtn:active {
+  background-color: #000000;
+  color: #f8f7fd;
+}

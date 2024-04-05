@@ -1,0 +1,38 @@
+.Title3 {
+  margin: 20px;
+}
+
+.EventContainer {
+  margin: 20px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .Event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      border-radius: 20px;
+    }
+
+    .EventInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      button {
+        border-radius: 20px;
+        width: 120px;
+        height: 30px;
+        border: none;
+        background-color: #4527ff;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+}

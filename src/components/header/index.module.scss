@@ -1,0 +1,19 @@
+.Header {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .Logo {
+    align-items: center;
+    width: 200px;
+    height: 28px;
+  }
+
+  .ProfileImg {
+    background-color: #2ecc71;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+}

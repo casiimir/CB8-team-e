@@ -17,11 +17,24 @@ export default async function handler(req, res) {
   }
 }
 
+
 async function getAllUsers(req, res) {
+  const { page = 1, limit = 3 } = req.query;
+
   try {
-    const user = await User.find();
-    return res.status(200).json({ success: "OK", data: user });
-  } catch (error) {
+    const users = await User.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await User.countDocuments();
+
+    return res.json({
+      data: users,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
+  } catch (err) {
     res.status(500).json({
       status: "ERROR",
       error: "Errore durante il recupero degli utenti!",

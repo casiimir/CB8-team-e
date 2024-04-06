@@ -1,0 +1,36 @@
+.LoginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 45px;
+    .Title_LoginPage{
+        font-size: 60px;
+        font-weight: bold;
+        text-align: center;
+   }
+   .Form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+   }
+   .Label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+    .Box_Input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 18px;
+    height: 60px;
+    width: 350px;
+    border-radius: 20px;
+    background-color: azure;
+    }
+   
+}

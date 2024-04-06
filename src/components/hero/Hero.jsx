@@ -11,6 +11,7 @@ const Hero = () => {
     fetch("/api/events")
       .then((res) => res.json())
       .then((events) => setEvents(events.data));
+      console.log(events);
   }, []);
 
   useEffect(() => {

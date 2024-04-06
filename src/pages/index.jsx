@@ -4,10 +4,10 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
-import Hero from "../components/hero"
 import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
 import Container from "../components/container";
+import Slider from "@/components/slider";
 
 export default function Home({ session }) {
   const [selectedTab, setSelectedTab] = useState("Museec");
@@ -39,7 +39,7 @@ export default function Home({ session }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Hero />
+        <Slider />
         <Container>
           <section className={styles.SectionTab}>
             {categories.map((category, key) => (

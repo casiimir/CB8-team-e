@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import Container from "../container";
 
@@ -15,13 +15,21 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const updateCounter = async () => {
-      setCounter((prev) => Number(!prev));
+    const updateCounter = () => {
+      setCounter((prev) => (prev + 1) % events.length);
     };
 
     const intervalId = setInterval(updateCounter, 4000);
     return () => clearInterval(intervalId);
-  }, [counter]);
+  }, [events]);
+
+  const handlePrevClick = () => {
+    setCounter((prev) => (prev === 0 ? events.length - 1 : prev - 1));
+  };
+
+  const handleNextClick = () => {
+    setCounter((prev) => (prev + 1) % events.length);
+  };
 
   return (
     <Container>
@@ -37,8 +45,8 @@ const Hero = () => {
           />
         </div>
         <div className={styles.Actions}>
-          <FaAngleLeft className={styles.Arrow} />
-          <FaAngleRight className={styles.Arrow} />
+          <FaAngleLeft className={styles.Arrow} onClick={handlePrevClick} />
+          <FaAngleRight className={styles.Arrow} onClick={handleNextClick} />
         </div>
       </div>
     </Container>

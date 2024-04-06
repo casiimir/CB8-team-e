@@ -4,6 +4,8 @@ import {
   FaTicket,
   FaMagnifyingGlass,
   FaCircleUser,
+  FaSquarePlus,
+  FaTableList,
 } from "react-icons/fa6";
 
 const NavBar = () => {
@@ -17,7 +19,13 @@ const NavBar = () => {
           <FaMagnifyingGlass />
         </li>
         <li>
+          <FaSquarePlus />
+        </li>
+        <li>
           <FaTicket />
+        </li>
+        <li>
+          <FaTableList />
         </li>
         <li>
           <FaCircleUser />

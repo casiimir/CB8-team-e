@@ -17,6 +17,9 @@
 
     img {
       border-radius: 20px;
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
     }
 
     .EventInfo {
@@ -30,8 +33,12 @@
         height: 30px;
         border: none;
         background-color: #4527ff;
-        color: #ffffff;
+
         cursor: pointer;
+
+        a {
+          color: #ffffff;
+        }
       }
     }
   }

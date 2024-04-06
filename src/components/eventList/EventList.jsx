@@ -13,7 +13,7 @@ const EventsList = ({ selectedTab }) => {
 
   return (
     <div>
-      <h3 className={styles.Title3}>Popolari</h3>
+      <h3 className={styles.Title3}>{selectedTab}</h3>
       <div className={styles.EventContainer}>
         {events?.length > 0 &&
           events.map((event) => (
@@ -22,8 +22,9 @@ const EventsList = ({ selectedTab }) => {
               <div className={styles.EventInfo}>
                 <h4>{event.title}</h4>
                 <p>Data: {event.date}</p>
-                <button>Visualizza evento</button>
-                <a href={`/api/events/${event._id}`}>APRI</a>
+                <button>
+                  <a href={`/api/events/${event._id}`}>Visualizza Evento</a>
+                </button>
               </div>
             </div>
           ))}

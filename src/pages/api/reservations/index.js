@@ -17,10 +17,21 @@ export default async function handler(req, res) {
 }
 
 async function getAllReservation(req, res) {
-  try {
-    const reservation = await Reservation.find();
+  const { page = 1, limit = 3 } = req.query;
 
-    return res.status(200).json({ success: "OK", data: reservation });
+  try {
+    const reservation = await Reservation.find()
+    .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .exec();
+
+    const count = await Reservation.countDocuments();
+
+    return res.json({
+      data: reservation,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
   } catch (error) {
     return res.status(500).json({
       status: "ERROR",

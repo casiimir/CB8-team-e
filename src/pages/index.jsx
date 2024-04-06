@@ -1,5 +1,7 @@
 import styles from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 import Head from "next/head";
 import Header from "@/components/header";
@@ -10,15 +12,22 @@ import NavBar from "@/components/navBar";
 import Footer from "@/components/footer";
 import Container from "@/components/container";
 
-export default function Home() {
+export default function Home({ session }) {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("/api/categories")
       .then((res) => res.json())
       .then((categories) => setCategories(categories.data));
   }, []);
+
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push("/login");
+  //   }
+  // }, [session]);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -52,4 +61,12 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
 }

@@ -17,9 +17,21 @@ export default async function handler(req, res) {
 }
 
 async function getAllEvents(req, res) {
+  const { page = 1, limit = 2 } = req.query;
+
   try {
-    const events = await Event.find();
-    return res.status(200).json({ status: "OK", data: events });
+    const events = await Event.find()
+    .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .exec();
+
+    const count = await Event.countDocuments();
+
+    return res.json({
+      data: events,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
   } catch (error) {
     return res.status(500).json({
       status: "ERROR",

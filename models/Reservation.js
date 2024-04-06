@@ -17,4 +17,4 @@ const ReservationSchema = new mongoose.Schema({
 
 module.exports =
   mongoose.models.Reservation ||
-  mongoose.model("reservation", ReservationSchema);
+  mongoose.model("Reservation", ReservationSchema);

@@ -2,13 +2,10 @@ import styles from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
 
 import Head from "next/head";
-import Header from "@/components/header";
-import Hero from "@/components/hero";
-import TabButton from "@/components/tabButton";
-import EventList from "@/components/eventList";
-import NavBar from "@/components/navBar";
-import Footer from "@/components/footer";
-import Container from "@/components/container";
+import Hero from "../components/hero"
+import TabButton from "../components/tabButton";
+import EventList from "../components/eventList";
+import Container from "../components/container";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("Museec");
@@ -33,7 +30,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header />
         <Hero />
         <Container>
           <section className={styles.SectionTab}>
@@ -48,7 +44,6 @@ export default function Home() {
           </section>
         </Container>
         <EventList selectedTab={selectedTab} />
-        <NavBar />
       </main>
     </>
   );

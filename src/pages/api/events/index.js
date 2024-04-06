@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      await getAllEvents(req, res);
+      return await getAllEvents(req, res);
     case "POST":
-      await newEvent(req, res);
+      return await newEvent(req, res);
     default:
       res.setHeader("Allow", ["GET", "POST"]);
       return res.status(405).end(`Metodo ${method} non accettato!`);
@@ -31,7 +31,7 @@ async function getAllEvents(req, res) {
 async function newEvent(req, res) {
   try {
     const {
-      organizer,
+      organizerId,
       title,
       description,
       date,
@@ -55,7 +55,7 @@ async function newEvent(req, res) {
       !address ||
       !category ||
       !capacity ||
-      !organizer
+      !organizerId
     ) {
       return res.status(400).json({
         status: "ERROR",
@@ -64,7 +64,7 @@ async function newEvent(req, res) {
     }
 
     const newEvent = new Event({
-      organizer,
+      organizerId,
       title,
       description,
       date,
@@ -81,6 +81,7 @@ async function newEvent(req, res) {
 
     return res.status(201).json({ status: "OK", data: newEvent });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       status: "ERROR",
       error: "Errore durante la creazione del nuovo evento!",

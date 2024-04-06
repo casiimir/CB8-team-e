@@ -11,11 +11,11 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      await getCategory(id, res);
+      return await getCategory(id, res);
     case "PUT":
-      await updateCategory(id, body, res);
+      return await updateCategory(id, body, res);
     case "DELETE":
-      await deleteCategory(id, body, res);
+      return await deleteCategory(id, body, res);
     default:
       res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
       return res.status(405).end(`Metodo ${method} non accettato!`);

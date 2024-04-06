@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      await getAllReservation(req, res);
+      return await getAllReservation(req, res);
     case "POST":
-      await newReservation(req, res);
+      return await newReservation(req, res);
     default:
       res.setHeader("Allow", ["GET", "POST"]);
       return res.status(405).end(`Metodo ${method} non accettato!`);

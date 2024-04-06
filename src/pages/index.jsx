@@ -1,17 +1,24 @@
 import styles from "../styles/Home.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Head from "next/head";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import TabButton from "@/components/tabButton";
-import MusicEventsList from "@/components/musicEventsList";
-import DreenksEventList from "@/components/dreenksEventList";
+import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";
 import Footer from "@/components/footer";
+import Container from "@/components/container";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("Museec");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/categories")
+      .then((res) => res.json())
+      .then((categories) => setCategories(categories.data));
+  }, []);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -28,17 +35,19 @@ export default function Home() {
       <main>
         <Header />
         <Hero />
-        <section className={styles.SectionTab}>
-          <TabButton onSelect={() => handleSelect("Museec")}>Museec</TabButton>
-          <TabButton onSelect={() => handleSelect("Dreenks")}>
-            Dreenks
-          </TabButton>
-          <TabButton onSelect={() => handleSelect("Placees")}>
-            Placees
-          </TabButton>
-        </section>
-        {selectedTab === "Museec" && <MusicEventsList />}
-        {selectedTab === "Dreenks" && <DreenksEventList />}
+        <Container>
+          <section className={styles.SectionTab}>
+            {categories.map((category, key) => (
+              <TabButton
+                key={category._id}
+                onSelect={() => handleSelect(category.name)}
+              >
+                {category.name}
+              </TabButton>
+            ))}
+          </section>
+        </Container>
+        <EventList selectedTab={selectedTab} />
         <NavBar />
       </main>
     </>

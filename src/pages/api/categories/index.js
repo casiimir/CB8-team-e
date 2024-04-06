@@ -30,12 +30,16 @@ async function getAllCategories(req, res) {
 
 async function newCategory(req, res) {
   try {
-    const { name } = req.body;
+    const { name, background } = req.body;
 
-    if (!name) return res.status(400).json("Il campo name è obbligatorio!");
+    if (!name)
+      return res
+        .status(400)
+        .json("I campi name e background sono obbligatorio!");
 
     const newCategory = new Category({
       name,
+      background,
     });
 
     await newCategory.save();

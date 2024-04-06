@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      await getAllUsers(req, res);
+      return await getAllUsers(req, res);
     case "POST":
-      await newUser(req, res);
+      return await newUser(req, res);
     default:
       res.setHeader("Allow", ["GET", "POST"]);
       return res.status(405).end(`Metodo ${method} non accettato!`);

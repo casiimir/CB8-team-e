@@ -1,6 +1,8 @@
 .SectionTab {
+  width: 100vw;
   background-color: #f8f7fd;
-  margin: 20px;
+  margin-top: 20px;
   display: flex;
   gap: 20px;
+  overflow-x: auto;
 }

@@ -1,8 +1,9 @@
 import dbConnect from "../../../../libs/dbConnect";
 import User from "../../../../models/User";
+import bycrpt from "bcrypt";
 
 export default async function handler(req, res) {
-  const { method, query } = req;
+  const { method } = req;
   await dbConnect();
 
   switch (method) {
@@ -43,8 +44,6 @@ async function getAllUsers(req, res) {
 
 async function newUser(req, res) {
   try {
-    await dbConnect();
-
     const {
       name,
       surname,
@@ -63,7 +62,6 @@ async function newUser(req, res) {
       !name ||
       !surname ||
       !type ||
-      !businessName ||
       !imageProfile ||
       !city ||
       !address ||
@@ -72,33 +70,38 @@ async function newUser(req, res) {
       !email ||
       !password
     ) {
-      return res.status(400).json({
+      return res.status(405).json({
         status: "ERROR",
-        error: "Tutti i campi obbligatori devono essere forniti!",
+        error: "Dati mancanti durante l'inserimento dell'utente!",
       });
     }
 
-    const newUser = new User({
+    const hashedPassword = await bycrpt.hash(password, 10);
+
+    const user = new User({
       name,
       surname,
       type,
-      businessName,
       imageProfile,
       city,
       address,
       phoneNumber,
       username,
       email,
-      password,
+      password: hashedPassword,
     });
 
-    await newUser.save();
+    if (type === "business") {
+      user.businessName = businessName;
+    }
 
-    res.status(201).json({ newUser });
+    const newUser = await user.save();
+    if (!newUser) throw Error;
+
+    return res.status(200).json({ status: "OK", message: "Utente inserito!" });
   } catch (error) {
-    res.status(500).json({
-      status: "ERROR",
-      error: "Errore durante la creazione del nuovo User!",
-    });
+    res
+      .status(500)
+      .json({ status: "ERROR", error: "Errore durante la registrazione" });
   }
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import Head from "next/head";
 import Header from "@/components/header";
-import Hero from "@/components/hero";
+import Slider from "@/components/slider";
 import TabButton from "@/components/tabButton";
 import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";
@@ -34,7 +34,7 @@ export default function Home() {
       </Head>
       <main>
         <Header />
-        <Hero />
+        <Slider />
         <Container>
           <section className={styles.SectionTab}>
             {categories.map((category, key) => (

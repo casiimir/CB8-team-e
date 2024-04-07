@@ -9,7 +9,7 @@ import EventList from "../components/eventList";
 import Container from "../components/container";
 import Slider from "@/components/slider";
 
-const Home = ({ session }) => {
+export default function Home({ session }) {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const router = useRouter();
@@ -20,12 +20,11 @@ const Home = ({ session }) => {
       .then((categories) => setCategories(categories.data));
   }, []);
 
-  useEffect(() => {
-    const loadSession = async () => {
-      if (!session) router.push("/login");
-    };
-    loadSession();
-  }, [router, session]);
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push("/login");
+  //   }
+  // }, [session]);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -41,23 +40,21 @@ const Home = ({ session }) => {
       </Head>
       <main>
         <Slider />
-        <Container>
-          <section className={styles.SectionTab}>
-            {categories.map((category, key) => (
-              <TabButton
-                key={category._id}
-                onSelect={() => handleSelect(category.name)}
-              >
-                {category.name}
-              </TabButton>
-            ))}
-          </section>
-        </Container>
+        <section className={styles.SectionTab}>
+          {categories.map((category, key) => (
+            <TabButton
+              key={category._id}
+              onSelect={() => handleSelect(category.name)}
+            >
+              {category.name.toUpperCase()}
+            </TabButton>
+          ))}
+        </section>
         <EventList selectedTab={selectedTab} />
       </main>
     </>
   );
-};
+}
 
 export async function getServerSideProps(context) {
   return {
@@ -66,5 +63,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-export default Home;

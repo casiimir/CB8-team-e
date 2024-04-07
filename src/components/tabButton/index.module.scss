@@ -1,12 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+
 .TabBtn {
-  width: 80px;
+  margin-top: 20px;
+  width: 100px;
   height: 30px;
+  font-family: "League Spartan", sans-serif;
   background-color: #f8f7fd;
   color: #000000;
-  text-decoration: line-through;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  text-decoration: line-through;
 }
 
 .TabBtn:active {

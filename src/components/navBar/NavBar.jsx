@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+import Link from "next/link";
 import {
   FaHouse,
   FaTicket,
@@ -13,10 +14,14 @@ const NavBar = () => {
     <nav className={styles.NavBar}>
       <ul className={styles.NavMenu}>
         <li>
-          <FaHouse />
+          <Link href="/">
+            <FaHouse />
+          </Link>
         </li>
         <li>
-          <FaMagnifyingGlass />
+          <Link href="/cerca-evento">
+            <FaMagnifyingGlass />
+          </Link>
         </li>
         <li>
           <FaSquarePlus />
@@ -28,7 +33,9 @@ const NavBar = () => {
           <FaTableList />
         </li>
         <li>
-          <FaCircleUser />
+          <Link href="/login">
+            <FaCircleUser />
+          </Link>
         </li>
       </ul>
     </nav>

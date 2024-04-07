@@ -3,11 +3,12 @@
   position: fixed;
   bottom: 0;
   margin-bottom: 5px;
-  width: 300px;
+  width: 90%;
   height: 40px;
   border-radius: 20px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 999;
 
   .NavMenu {
     color: #ffffff;
@@ -16,5 +17,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 24px;
+
+    a {
+      color: #ffffff;
+    }
   }
 }

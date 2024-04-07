@@ -1,15 +1,17 @@
-import NavBar from "@/components/navBar";
 import styles from "./index.module.scss";
+
+import NavBar from "@/components/navBar";
 import Header from "../../components/header";
 
 const MainLayout = ({ children }) => {
-return (
+  return (
     <div className={styles.MainLayout}>
-    < Header />
-    < NavBar />
+      <Header />
+      <NavBar />
 
-    {children}
+      {children}
     </div>
-)}
+  );
+};
 
 export default MainLayout;

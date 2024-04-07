@@ -1,6 +1,6 @@
 import dbConnect from "../../../../libs/dbConnect";
 import User from "../../../../models/User";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -8,7 +8,7 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      secret: process.env.ACCESS_TOKEN_SECRET,
+      secret: process.env.NEXTAUTH_SECRET,
       credentials: {
         username: {
           label: "username",
@@ -23,10 +23,9 @@ export const authOptions = {
         if (credentials == null) return null;
 
         try {
-          const user = await User.findOne({ email: credentials.email });
-
+          const user = await User.findOne({ username: credentials.username });
           if (user) {
-            const isMatch = await bcrypt.compare(
+            const isMatch = await bcryptjs.compare(
               credentials.password,
               user.password
             );

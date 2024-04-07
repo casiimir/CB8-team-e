@@ -1,13 +1,16 @@
+import MainLayout from "@/layout/mainLayout";
 import "@/styles/globals.scss";
 import { SessionProvider } from "next-auth/react";
+import { useRouter } from "next/router";
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
+    <SessionProvider session={pageProps.session}>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
     </SessionProvider>
   );
 }

@@ -1,6 +1,6 @@
 import styles from "./index.module.scss";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, endPoint = "event" }) => {
   return (
     <div key={event._id} className={styles.Event}>
       <img src={`events/${event.poster}`} alt={event.title} />
@@ -8,7 +8,11 @@ const EventCard = ({ event }) => {
         <h4>{event.title}</h4>
         <p>Data: {event.date}</p>
         <button>
-          <a href={`event/${event._id}`}>Visualizza Evento</a>
+          <a
+            href={`${endPoint}/${event.ticketId ? event.ticketId : event._id}`}
+          >
+            Visualizza Evento
+          </a>
         </button>
       </div>
     </div>

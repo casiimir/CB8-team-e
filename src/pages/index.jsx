@@ -12,7 +12,15 @@ import Slider from "@/components/slider";
 const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
+  const [events, setEvents] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    fetch(`/api/events/search?category=${selectedTab}`)
+      .then((res) => res.json())
+      .then((events) => setEvents(events.data));
+    console.log(events);
+  }, [selectedTab]);
 
   useEffect(() => {
     fetch("/api/categories")
@@ -22,6 +30,7 @@ const Home = ({ session }) => {
 
   useEffect(() => {
     const loadSession = async () => {
+      console.log(session);
       if (!session) router.push("/login");
     };
     loadSession();
@@ -51,11 +60,11 @@ const Home = ({ session }) => {
             </TabButton>
           ))}
         </section>
-        <EventList selectedTab={selectedTab} />
+        <EventList events={events} title={selectedTab} />
       </main>
     </>
   );
-}
+};
 
 export async function getServerSideProps(context) {
   return {
@@ -66,4 +75,3 @@ export async function getServerSideProps(context) {
 }
 
 export default Home;
-

@@ -1,0 +1,33 @@
+.Event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  img {
+    border-radius: 20px;
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .EventInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    button {
+      border-radius: 20px;
+      width: 120px;
+      height: 30px;
+      border: none;
+      background-color: #4527ff;
+
+      cursor: pointer;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}

@@ -41,23 +41,21 @@ const Home = ({ session }) => {
       </Head>
       <main>
         <Slider />
-        <Container>
-          <section className={styles.SectionTab}>
-            {categories.map((category, key) => (
-              <TabButton
-                key={category._id}
-                onSelect={() => handleSelect(category.name)}
-              >
-                {category.name}
-              </TabButton>
-            ))}
-          </section>
-        </Container>
+        <section className={styles.SectionTab}>
+          {categories.map((category, key) => (
+            <TabButton
+              key={category._id}
+              onSelect={() => handleSelect(category.name)}
+            >
+              {category.name.toUpperCase()}
+            </TabButton>
+          ))}
+        </section>
         <EventList selectedTab={selectedTab} />
       </main>
     </>
   );
-};
+}
 
 export async function getServerSideProps(context) {
   return {
@@ -68,3 +66,4 @@ export async function getServerSideProps(context) {
 }
 
 export default Home;
+

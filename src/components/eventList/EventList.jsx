@@ -23,7 +23,7 @@ const EventsList = ({ selectedTab }) => {
                 <h4>{event.title}</h4>
                 <p>Data: {event.date}</p>
                 <button>
-                  <a href={`/event/${event._id}`}>Visualizza Evento</a>
+                  <a href={`event/${event._id}`}>Visualizza Evento</a>
                 </button>
               </div>
             </div>

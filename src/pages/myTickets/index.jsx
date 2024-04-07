@@ -13,14 +13,21 @@ export default function MyTickets({ session }) {
       ).then((reservations) => {
         reservations.map((ticket) => {
           HTTP_GET(`events/${ticket.eventId}`).then((event) => {
-            setTickets((prev) => [...prev, event]);
+            console.log({ ...event, ticketId: ticket.eventId });
+            setTickets((prev) => [...prev, { ...event, ticketId: ticket._id }]);
           });
         });
       });
     };
     getTickets();
   }, [session]);
-  return <EventList title={"le mie prenotazioni"} events={tickets} />;
+  return (
+    <EventList
+      title={"le mie prenotazioni"}
+      events={tickets}
+      endPoint={"ticket"}
+    />
+  );
 }
 
 export async function getServerSideProps(context) {

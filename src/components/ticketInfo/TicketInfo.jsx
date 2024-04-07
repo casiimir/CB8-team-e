@@ -1,5 +1,6 @@
 import styles from "./index.module.scss";
 import { FaCalendar, FaClock, FaLocationDot } from "react-icons/fa6";
+import Barcode from "react-barcode";
 
 const TicketInfo = ({ ticket }) => {
   return (
@@ -33,7 +34,7 @@ const TicketInfo = ({ ticket }) => {
         <hr className={styles.TicketHr} />
       </div>
       <div className={styles.TicketCode}>
-        <h3>{ticket.ticketId}</h3>
+        <Barcode value={ticket.ticketId} />
       </div>
     </div>
   );

@@ -59,7 +59,7 @@
 
   .TicketCode {
     width: 100%;
-    padding: 50px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,5 +67,9 @@
       rgba(14, 30, 37, 0.32) 0px 6px 16px 0px;
     border-radius: 20px;
     background-color: #ffffff;
+
+    svg {
+      height: 20%;
+    }
   }
 }

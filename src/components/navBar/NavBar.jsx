@@ -1,5 +1,7 @@
 import styles from "./index.module.scss";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 import {
   FaHouse,
   FaTicket,
@@ -10,16 +12,21 @@ import {
 } from "react-icons/fa6";
 
 const NavBar = () => {
+  const router = useRouter();
+
   return (
     <nav className={styles.NavBar}>
       <ul className={styles.NavMenu}>
         <li>
-          <Link href="/">
+          <Link className={router.pathname === "/" && styles.Active} href="/">
             <FaHouse />
           </Link>
         </li>
         <li>
-          <Link href="/cerca-evento">
+          <Link
+            className={router.pathname === "/cerca-evento" && styles.Active}
+            href="/cerca-evento"
+          >
             <FaMagnifyingGlass />
           </Link>
         </li>
@@ -27,13 +34,21 @@ const NavBar = () => {
           <FaSquarePlus />
         </li>
         <li>
-          <FaTicket />
+          <Link
+            className={router.pathname === "/myTickets" && styles.Active}
+            href="/myTickets"
+          >
+            <FaTicket />
+          </Link>
         </li>
         <li>
           <FaTableList />
         </li>
         <li>
-          <Link href="/login">
+          <Link
+            className={router.pathname === "/login" && styles.Active}
+            href="/login"
+          >
             <FaCircleUser />
           </Link>
         </li>

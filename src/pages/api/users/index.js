@@ -1,6 +1,6 @@
 import dbConnect from "../../../../libs/dbConnect";
 import User from "../../../../models/User";
-import bycrpt from "bcrypt";
+import bycrpt from "bcryptjs";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -16,7 +16,6 @@ export default async function handler(req, res) {
       return res.status(405).end(`Metodo ${method} non accettato!`);
   }
 }
-
 
 async function getAllUsers(req, res) {
   const { page = 1, limit = 3 } = req.query;

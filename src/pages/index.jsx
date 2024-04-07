@@ -9,7 +9,7 @@ import EventList from "../components/eventList";
 import Container from "../components/container";
 import Slider from "@/components/slider";
 
-export default function Home({ session }) {
+const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const router = useRouter();
@@ -20,11 +20,12 @@ export default function Home({ session }) {
       .then((categories) => setCategories(categories.data));
   }, []);
 
-  // useEffect(() => {
-  //   if (!session) {
-  //     router.push("/login");
-  //   }
-  // }, [session]);
+  useEffect(() => {
+    const loadSession = async () => {
+      if (!session) router.push("/login");
+    };
+    loadSession();
+  }, [router, session]);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -56,7 +57,7 @@ export default function Home({ session }) {
       </main>
     </>
   );
-}
+};
 
 export async function getServerSideProps(context) {
   return {
@@ -65,3 +66,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+export default Home;

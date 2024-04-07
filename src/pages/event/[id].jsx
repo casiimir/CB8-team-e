@@ -1,13 +1,37 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import HTTP_GET from "../../../libs/HTTP";
-import styles from "./event.module.scss";
-import Container from "@/components/container";
+import { getSession } from "next-auth/react";
+import { HTTP_GET, HTTP_POST } from "../../../libs/HTTP";
+import styles from "@/styles/Event.module.scss";
 import BannerEvent from "@/components/bannerEvent";
 import EventDetails from "@/components/eventDetails";
-export default function Event() {
+import Button from "@/components/button";
+import Input from "@/components/input";
+
+export default function Event({ session }) {
   const router = useRouter();
   const [event, setEvent] = useState({});
+  const [ticketsNumber, setTicketsNumber] = useState(1);
+
+  const onClickPrenota = async () => {
+    const reservation = {
+      userId: session.user.id,
+      eventId: event._id,
+      ticketsBooked: ticketsNumber,
+    };
+
+    const res = await HTTP_POST("reservations", reservation);
+
+    if (res.newReservation) {
+      router.push(`../ticket/${res.newReservation._id}`);
+    } else {
+      alert("Prenotazione fallita!");
+    }
+  };
+
+  const handleSetTicketNumber = (e) => {
+    setTicketsNumber(e.target.value);
+  };
 
   useEffect(() => {
     const getEvent = async () => {
@@ -23,16 +47,28 @@ export default function Event() {
     getEvent();
   }, [router.query.id]);
 
+  useEffect(() => {
+    const loadSession = async () => {
+      if (!session) router.push("/login");
+    };
+    loadSession();
+  }, [router, session]);
+
   return (
     <>
-      {event ? (
+      {Object.keys(event).length > 0 ? (
         <div className={styles.Event}>
           <div className={styles.Wrapper}>
             <BannerEvent img={event.poster} title={event.title} />
             <EventDetails event={event} />
             <div className={styles.Prenota}>
-              <input type="number" />
-              <button>Prenota</button>
+              <Input
+                type={"number"}
+                required={true}
+                value={ticketsNumber}
+                onChange={handleSetTicketNumber}
+              />
+              <Button textButton={"Prenota"} onClick={onClickPrenota} />
             </div>
           </div>
         </div>
@@ -41,4 +77,12 @@ export default function Event() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
 }

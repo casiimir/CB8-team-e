@@ -1,6 +1,6 @@
 const BASE_URL = "/api/";
 
-export default async function HTTP_GET(end_point, params = {}) {
+const HTTP_GET = async (end_point, params = {}) => {
   let query = "";
 
   if (Object.keys(params).length > 0) {
@@ -15,4 +15,19 @@ export default async function HTTP_GET(end_point, params = {}) {
   const data = await res.json();
 
   return data.data;
-}
+};
+
+const HTTP_POST = async (end_point, body) => {
+  const data = await fetch(`${BASE_URL}${end_point}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  const res = await data.json();
+  return res;
+};
+
+export { HTTP_GET, HTTP_POST };

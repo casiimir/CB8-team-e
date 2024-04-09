@@ -8,16 +8,10 @@ export default function MyTickets({ session }) {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     const getTickets = async () => {
-      HTTP_GET(
+      const tickets = await HTTP_GET(
         `reservations/getUserReservations?userId=${session.user.id}`
-      ).then((reservations) => {
-        reservations.map((ticket) => {
-          HTTP_GET(`events/${ticket.eventId}`).then((event) => {
-            console.log({ ...event, ticketId: ticket.eventId });
-            setTickets((prev) => [...prev, { ...event, ticketId: ticket._id }]);
-          });
-        });
-      });
+      );
+      setTickets(tickets);
     };
     getTickets();
   }, [session]);

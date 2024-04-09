@@ -1,5 +1,5 @@
 import SearchEvent from "../../components/searchEvent";
 
-export default function Login() {
+export default function SearchEventPage() {
   return <SearchEvent />;
 }

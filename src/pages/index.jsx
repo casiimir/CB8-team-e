@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
-import Container from "../components/container";
 import Slider from "@/components/slider";
 
 const Home = ({ session }) => {

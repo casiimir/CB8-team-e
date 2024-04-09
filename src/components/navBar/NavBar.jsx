@@ -18,14 +18,17 @@ const NavBar = () => {
     <nav className={styles.NavBar}>
       <ul className={styles.NavMenu}>
         <li>
-          <Link className={router.pathname === "/" && styles.Active} href="/">
+          <Link
+            className={router.pathname === "/" ? styles.Active : ""}
+            href="/"
+          >
             <FaHouse />
           </Link>
         </li>
         <li>
           <Link
-            className={router.pathname === "/cerca-evento" && styles.Active}
-            href="/cerca-evento"
+            className={router.pathname === "/search" ? styles.Active : ""}
+            href="/search"
           >
             <FaMagnifyingGlass />
           </Link>
@@ -37,7 +40,7 @@ const NavBar = () => {
         </li>
         <li>
           <Link
-            className={router.pathname === "/myTickets" && styles.Active}
+            className={router.pathname === "/myTickets" ? styles.Active : ""}
             href="/myTickets"
           >
             <FaTicket />
@@ -48,7 +51,7 @@ const NavBar = () => {
         </li>
         <li>
           <Link
-            className={router.pathname === "/login" && styles.Active}
+            className={router.pathname === "/login" ? styles.Active : ""}
             href="/login"
           >
             <FaCircleUser />

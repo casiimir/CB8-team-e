@@ -8,8 +8,8 @@ const EventsList = ({ title, events, endPoint }) => {
       <h3 className={styles.Title3}>{title}</h3>
       <div className={styles.EventContainer}>
         {events?.length > 0 &&
-          events.map((event) => (
-            <EventCard event={event} endPoint={endPoint} />
+          events.map((event, key) => (
+            <EventCard key={key} event={event} endPoint={endPoint} />
           ))}
       </div>
     </div>

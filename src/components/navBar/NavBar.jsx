@@ -31,7 +31,9 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <FaSquarePlus />
+          <Link href="/add">
+            <FaSquarePlus />
+          </Link>
         </li>
         <li>
           <Link

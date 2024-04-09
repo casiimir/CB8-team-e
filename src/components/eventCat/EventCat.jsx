@@ -1,9 +1,11 @@
 import styles from "./index.module.scss";
-import Link from "next/link";
+import EventList from "../eventList";
+
 import { useState, useEffect } from "react";
 
 const EventCat = () => {
   const [categoriesData, setCategoriesData] = useState([{}]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     fetch("/api/categories")
@@ -11,21 +13,30 @@ const EventCat = () => {
       .then((categories) => setCategoriesData(categories.data));
   }, []);
 
+  const onHandleCategory = (categoryName) => {
+    fetch(`/api/events/search?category=${categoryName}`)
+      .then((res) => res.json())
+      .then((events) => setEvents(events.data));
+  };
+
   return (
     <div className={styles.EventCatContainer}>
       {categoriesData.map((categoria) => (
-        <Link href={`../category/${categoria.name}`}>
-          <div className={styles.EventCardCat} key={categoria._id}>
-            <div className={styles.Overlay}>
-              <h4>{categoria.name}</h4>
-            </div>
-            <img
-              src={`categories/${categoria.background}`}
-              alt={categoria.name}
-            />
+        <div
+          className={styles.EventCardCat}
+          key={categoria._id}
+          onClick={() => onHandleCategory(categoria.name)}
+        >
+          <div className={styles.Overlay}>
+            <h4>{categoria.name}</h4>
           </div>
-        </Link>
+          <img
+            src={`categories/${categoria.background}`}
+            alt={categoria.name}
+          />
+        </div>
       ))}
+      <EventList events={events} />
     </div>
   );
 };

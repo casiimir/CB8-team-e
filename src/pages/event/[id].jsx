@@ -7,11 +7,25 @@ import BannerEvent from "@/components/bannerEvent";
 import EventDetails from "@/components/eventDetails";
 import Button from "@/components/button";
 import Input from "@/components/input";
+import Modal from "@/components/modal";
+import { FaCheck } from "react-icons/fa";
 
 export default function Event({ session }) {
   const router = useRouter();
   const [event, setEvent] = useState({});
   const [ticketsNumber, setTicketsNumber] = useState(1);
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleSubmit = async () => {
+    const reservation = {
+      userId: session.user.id,
+      eventId: event._id,
+      ticketsBooked: ticketsNumber,
+    };
+    const res = await HTTP_POST("reservations", reservation);
+
+    router.push(`../ticket/${res.newReservation._id}`);
+  };
 
   const onClickPrenota = async () => {
     const reservation = {
@@ -23,7 +37,7 @@ export default function Event({ session }) {
     const res = await HTTP_POST("reservations", reservation);
 
     if (res.newReservation) {
-      router.push(`../ticket/${res.newReservation._id}`);
+      setIsToggled(!isToggled); //router.push(`../ticket/${res.newReservation._id}`);
     } else {
       alert("Prenotazione fallita!");
     }
@@ -58,6 +72,13 @@ export default function Event({ session }) {
     <>
       {Object.keys(event).length > 0 ? (
         <div className={styles.Event}>
+          {isToggled && (
+            <Modal
+              status={<FaCheck />}
+              text="Successo!"
+              buttonHandleSumbit={handleSubmit}
+            />
+          )}
           <div className={styles.Wrapper}>
             <BannerEvent img={event.poster} title={event.title} />
             <EventDetails event={event} />

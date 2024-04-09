@@ -1,12 +1,16 @@
 .Modal {
+  position: fixed;
+  margin-bottom: 100px;
   display: flex;
+  left: 20px;
   flex-direction: column;
   border-radius: 25px;
   justify-content: center;
   background-color: rgb(123, 255, 255);
-  width: 500px;
-  height: 400px;
+  width: 90%;
+  height: 300px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  z-index: 999;
 }
 
 .Inner {

@@ -6,12 +6,14 @@ import { FiMail } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { signIn } from "next-auth/react";
 import { Router, useRouter } from "next/router";
+import Modal from "../modal";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
+  const [isToggled, setIsToggled] = useState(false);
   const handleSetUsername = (e) => setUsername(e.target.value);
   const handleSetPassword = (e) => setPassword(e.target.value);
   const handleSumbit = async (e) => {
@@ -26,13 +28,15 @@ const LoginPage = () => {
     if (!result.error) {
       router.push("/");
     } else {
-      console.log(result.error);
+      {
+        setIsToggled(!isToggled);
+      }
     }
   };
   return (
     <div className={styles.LoginPage}>
+      {isToggled && <Modal buttonHandleSumbit={handleSumbit} />}
       <h2 className={styles.Title_LoginPage}>Accedi alla Moveeda!</h2>
-
       <form className={styles.Form} onSubmit={handleSumbit}>
         <label htmlFor="username" className={styles.Label}>
           Username:{" "}
@@ -62,9 +66,7 @@ const LoginPage = () => {
           />
         </div>
       </form>
-
       <Button textButton="Accedi" onClick={handleSumbit} type="submit" />
-
       <p>
         Non hai un account Moveeda?? <a href="./sign">Registrati</a>{" "}
       </p>

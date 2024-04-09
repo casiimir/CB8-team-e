@@ -16,7 +16,7 @@ const searchEvent = () => {
   const onHandleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`/api/events/search?title=${inputValue}`)
+    fetch(`/api/search?query=${inputValue}`)
       .then((res) => res.json())
       .then((data) => setEventData(data.data));
     setShowEventResult(true);

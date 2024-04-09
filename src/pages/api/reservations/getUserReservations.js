@@ -1,5 +1,6 @@
 import dbConnect from "../../../../libs/dbConnect";
 import Reservation from "../../../../models/Reservation";
+import Event from "../../../../models/Event";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -13,6 +14,13 @@ export default async function handler(req, res) {
 
   const reservations = await Reservation.find({ userId: req.query.userId });
 
+  const events = await Promise.all(
+    reservations.map(async (reservation) => {
+      const temp = await Event.findById(reservation.eventId);
+      return { ...temp._doc, ticketId: reservation._id };
+    })
+  );
+
   if (!reservations) {
     return res.status(401).json({
       status: "ERROR",
@@ -20,5 +28,5 @@ export default async function handler(req, res) {
     });
   }
 
-  return res.status(200).json({ status: "OK", data: reservations });
+  return res.status(200).json({ status: "OK", data: events });
 }

@@ -1,12 +1,15 @@
 import styles from "../styles/Home.module.scss";
+
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
+import Header from "@/components/header";
+import Slider from "@/components/slider";
 import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
-import Slider from "@/components/slider";
+import NavBar from "@/components/navBar";
 
 const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
@@ -48,6 +51,7 @@ const Home = ({ session }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Header />
         <Slider />
         <section className={styles.SectionTab}>
           {categories.map((category, key) => (
@@ -60,6 +64,7 @@ const Home = ({ session }) => {
           ))}
         </section>
         <EventList events={events} title={selectedTab} />
+        <NavBar />
       </main>
     </>
   );

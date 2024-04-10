@@ -11,7 +11,7 @@ import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
 import NavBar from "@/components/navBar";
 
-const Home = ({ session }) => {
+const Home = () => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
@@ -21,7 +21,6 @@ const Home = ({ session }) => {
     fetch(`/api/events/search?category=${selectedTab}`)
       .then((res) => res.json())
       .then((events) => setEvents(events.data));
-    console.log(events);
   }, [selectedTab]);
 
   useEffect(() => {
@@ -29,14 +28,6 @@ const Home = ({ session }) => {
       .then((res) => res.json())
       .then((categories) => setCategories(categories.data));
   }, []);
-
-  useEffect(() => {
-    const loadSession = async () => {
-      console.log(session);
-      if (!session) router.push("/login");
-    };
-    loadSession();
-  }, [router, session]);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -69,13 +60,5 @@ const Home = ({ session }) => {
     </>
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}
 
 export default Home;

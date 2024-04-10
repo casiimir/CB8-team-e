@@ -1,12 +1,12 @@
 import Header from "@/components/header";
-import SearchEvent from "../../components/searchEvent";
+import AddEvent from "@/components/addEvent";
 import NavBar from "@/components/navBar";
 
-export default function SearchEventPage() {
+export default function AddEventPage() {
   return (
     <>
       <Header />
-      <SearchEvent />
+      <AddEvent />
       <NavBar />
     </>
   );

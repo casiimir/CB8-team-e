@@ -1,14 +1,18 @@
+import styles from "@/styles/Event.module.scss";
+
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
 import { HTTP_GET, HTTP_POST } from "../../../libs/HTTP";
-import styles from "@/styles/Event.module.scss";
+import { FaCheck } from "react-icons/fa";
+
+import Header from "@/components/header";
 import BannerEvent from "@/components/bannerEvent";
 import EventDetails from "@/components/eventDetails";
 import Button from "@/components/button";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
-import { FaCheck } from "react-icons/fa";
+import NavBar from "@/components/navBar";
 
 export default function Event({ session }) {
   const router = useRouter();
@@ -70,6 +74,7 @@ export default function Event({ session }) {
 
   return (
     <>
+      <Header />
       {Object.keys(event).length > 0 ? (
         <div className={styles.Event}>
           {isToggled && (
@@ -96,6 +101,7 @@ export default function Event({ session }) {
       ) : (
         <h1>Loading</h1>
       )}
+      <NavBar />
     </>
   );
 }

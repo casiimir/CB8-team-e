@@ -1,10 +1,14 @@
+import styles from "@/styles/Ticket.module.scss";
+
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
 import { HTTP_GET } from "../../../libs/HTTP";
-import styles from "@/styles/Ticket.module.scss";
+
+import Header from "@/components/header";
 import BannerEvent from "@/components/bannerEvent";
 import TicketInfo from "@/components/ticketInfo";
+import NavBar from "@/components/navBar";
 
 export default function Ticket({ session }) {
   const router = useRouter();
@@ -38,6 +42,7 @@ export default function Ticket({ session }) {
 
   return (
     <>
+      <Header />
       {Object.keys(ticket).length > 0 ? (
         <div className={styles.Ticket}>
           <div className={styles.Wrapper}>
@@ -48,6 +53,7 @@ export default function Ticket({ session }) {
       ) : (
         <h1>Loading...</h1>
       )}
+      <NavBar />
     </>
   );
 }

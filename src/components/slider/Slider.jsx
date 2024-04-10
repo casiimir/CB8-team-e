@@ -2,16 +2,18 @@ import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import Container from "../container";
+import { HTTP_GET } from "../../../libs/HTTP";
 
 const Hero = () => {
   const [events, setEvents] = useState([]);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    fetch("/api/events")
-      .then((res) => res.json())
-      .then((events) => setEvents(events.data));
-    console.log(events);
+    const getEvents = async () => {
+      const events = await HTTP_GET("/api/events?limit=5");
+      setEvents(events);
+    };
+    getEvents();
   }, []);
 
   useEffect(() => {

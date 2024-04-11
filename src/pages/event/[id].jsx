@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
 import { HTTP_GET, HTTP_POST } from "../../../libs/HTTP";
-import { FaCheck } from "react-icons/fa";
 
 import Header from "@/components/header";
 import BannerEvent from "@/components/bannerEvent";
@@ -74,7 +73,8 @@ export default function Event({ session }) {
         <div className={styles.Event}>
           {isToggled && (
             <Modal
-              status={<FaCheck />}
+              status="Successo"
+              title="SUCCESSO!"
               text={textModal}
               buttonHandleSumbit={handleSubmit}
             />

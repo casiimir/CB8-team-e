@@ -68,7 +68,7 @@ const LoginPage = () => {
       </form>
       <Button textButton="Accedi" onClick={handleSumbit} type="submit" />
       <p>
-        Non hai un account Moveeda?? <a href="./sign">Registrati</a>{" "}
+        Non hai un account Moveeda?? <a href="./register">Registrati</a>{" "}
       </p>
     </div>
   );

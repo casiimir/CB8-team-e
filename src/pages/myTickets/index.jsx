@@ -3,22 +3,30 @@ import styles from "@/styles/MyTickets.module.scss";
 import { getSession } from "next-auth/react";
 import { HTTP_GET } from "../../../libs/HTTP";
 import { useState, useEffect } from "react";
-
+import { useRouter } from "next/router";
 import Header from "@/components/header";
 import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";
 
 export default function MyTickets({ session }) {
   const [tickets, setTickets] = useState([]);
+  const router = useRouter();
+
   useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    } else if (session.user.type === "business") {
+      router.push("/myEvents");
+    }
     const getTickets = async () => {
       const tickets = await HTTP_GET(
-        `reservations/getUserReservations?userId=${session.user.id}`
+        `reservations/getUserReservations?userId=${session?.user?.id}`
       );
       setTickets(tickets);
     };
     getTickets();
-  }, [session]);
+  }, [session, router]);
+
   return (
     <>
       <Header />
@@ -27,7 +35,7 @@ export default function MyTickets({ session }) {
         events={tickets}
         endPoint={"ticket"}
       />
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

@@ -19,19 +19,20 @@ export default function Event({ session }) {
   const [event, setEvent] = useState({});
   const [ticketsNumber, setTicketsNumber] = useState(1);
   const [isToggled, setIsToggled] = useState(false);
+  const [textModal, setTextModal] = useState("Evento prenotato!");
+  const [ticketId, setTicketId] = useState("");
 
   const handleSubmit = async () => {
-    const reservation = {
-      userId: session.user.id,
-      eventId: event._id,
-      ticketsBooked: ticketsNumber,
-    };
-    const res = await HTTP_POST("reservations", reservation);
-
-    router.push(`../ticket/${res.newReservation._id}`);
+    router.push(`../login`);
   };
 
   const onClickPrenota = async () => {
+    if (!session) {
+      setIsToggled(!isToggled);
+      setTextModal("ERRORE Bisogna essere autenticati per prenotarsi!");
+      return;
+    }
+
     const reservation = {
       userId: session.user.id,
       eventId: event._id,
@@ -41,7 +42,8 @@ export default function Event({ session }) {
     const res = await HTTP_POST("reservations", reservation);
 
     if (res.newReservation) {
-      setIsToggled(!isToggled); //router.push(`../ticket/${res.newReservation._id}`);
+      setIsToggled(!isToggled);
+      setTicketId(res.newReservation._id);
     } else {
       alert("Prenotazione fallita!");
     }
@@ -65,13 +67,6 @@ export default function Event({ session }) {
     getEvent();
   }, [router.query.id]);
 
-  useEffect(() => {
-    const loadSession = async () => {
-      if (!session) router.push("/login");
-    };
-    loadSession();
-  }, [router, session]);
-
   return (
     <>
       <Header />
@@ -80,7 +75,7 @@ export default function Event({ session }) {
           {isToggled && (
             <Modal
               status={<FaCheck />}
-              text="Successo!"
+              text={textModal}
               buttonHandleSumbit={handleSubmit}
             />
           )}
@@ -101,7 +96,7 @@ export default function Event({ session }) {
       ) : (
         <h1>Loading</h1>
       )}
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

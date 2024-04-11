@@ -20,12 +20,13 @@ const EventCat = () => {
   };
 
   return (
+
     <>
       <div className={styles.EventCatContainer}>
-        {categoriesData.map((categoria) => (
+        {categoriesData.map((categoria, key) => (
           <div
             className={styles.EventCardCat}
-            key={categoria._id}
+            key={key}
             onClick={() => onHandleCategory(categoria.name)}
           >
             <div className={styles.OverlayCardCat}>
@@ -35,6 +36,7 @@ const EventCat = () => {
               src={`categories/${categoria.background}`}
               alt={categoria.name}
             />
+
           </div>
         ))}
       </div>

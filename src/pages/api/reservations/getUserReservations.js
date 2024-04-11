@@ -17,7 +17,9 @@ export default async function handler(req, res) {
   const events = await Promise.all(
     reservations.map(async (reservation) => {
       const temp = await Event.findById(reservation.eventId);
-      return { ...temp._doc, ticketId: reservation._id };
+      const obj = { ...temp?._doc, ticketId: reservation._id };
+      console.log(obj);
+      return obj;
     })
   );
 

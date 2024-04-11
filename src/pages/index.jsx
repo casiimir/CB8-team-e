@@ -21,7 +21,6 @@ const Home = ({ session }) => {
     fetch(`/api/events/search?category=${selectedTab}`)
       .then((res) => res.json())
       .then((events) => setEvents(events.data));
-    console.log(events);
   }, [selectedTab]);
 
   useEffect(() => {
@@ -29,14 +28,6 @@ const Home = ({ session }) => {
       .then((res) => res.json())
       .then((categories) => setCategories(categories.data));
   }, []);
-
-  useEffect(() => {
-    const loadSession = async () => {
-      console.log(session);
-      if (!session) router.push("/login");
-    };
-    loadSession();
-  }, [router, session]);
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -64,7 +55,7 @@ const Home = ({ session }) => {
           ))}
         </section>
         <EventList events={events} title={selectedTab} />
-        <NavBar />
+        <NavBar userType={session?.user?.type} />
       </main>
     </>
   );

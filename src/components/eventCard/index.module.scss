@@ -1,6 +1,7 @@
+@import "../../styles/colors.module.scss";
+
 .Event {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 20px;
 
@@ -16,17 +17,21 @@
     flex-direction: column;
     gap: 30px;
 
-    button {
+    .EventCardBtn {
+      color: $text-color;
+      background-color: $button-color;
       border-radius: 20px;
-      width: 120px;
-      height: 30px;
+      width: 140px;
+      height: 40px;
       border: none;
-      background-color: #4527ff;
 
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+        background-color: $hover-button-color;
+      }
 
       a {
-        color: #ffffff;
+        color: $text-color;
       }
     }
   }

@@ -1,6 +1,8 @@
 import styles from "./index.module.scss";
+
 import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+
 import Container from "../container";
 import { HTTP_GET } from "../../../libs/HTTP";
 

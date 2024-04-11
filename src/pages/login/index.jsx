@@ -1,5 +1,5 @@
 import Header from "@/components/header";
-import Modal from "@/components/modal";
+
 import LoginPage from "../../components/loginPage";
 import NavBar from "@/components/navBar";
 

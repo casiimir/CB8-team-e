@@ -5,15 +5,11 @@
   width: 100px;
   height: 30px;
   font-family: "League Spartan", sans-serif;
-  background-color: #f8f7fd;
+  background-color: #bbb;
   color: #000000;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   text-decoration: line-through;
-}
-
-.TabBtn:active {
-  background-color: #000000;
-  color: #f8f7fd;
+  cursor: pointer;
 }

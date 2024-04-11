@@ -35,7 +35,7 @@ export default function MyTickets({ session }) {
         events={tickets}
         endPoint={"ticket"}
       />
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

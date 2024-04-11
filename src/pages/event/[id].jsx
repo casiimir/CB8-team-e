@@ -22,7 +22,7 @@ export default function Event({ session }) {
   const [ticketId, setTicketId] = useState("");
 
   const handleSubmit = async () => {
-    router.push(`../ticket/${ticketId}`);
+    router.push(`../login`);
   };
 
   const onClickPrenota = async () => {
@@ -82,21 +82,21 @@ export default function Event({ session }) {
           <div className={styles.Wrapper}>
             <BannerEvent img={event.poster} title={event.title} />
             <EventDetails event={event} />
-            <div className={styles.Prenota}>
-              <Input
-                type={"number"}
-                required={true}
-                value={ticketsNumber}
-                onChange={handleSetTicketNumber}
-              />
-              <Button textButton={"Prenota"} onClick={onClickPrenota} />
-            </div>
+          </div>
+          <div className={styles.Prenota}>
+            <Input
+              type={"number"}
+              required={true}
+              value={ticketsNumber}
+              onChange={handleSetTicketNumber}
+            />
+            <Button textButton={"Prenota"} onClick={onClickPrenota} />
           </div>
         </div>
       ) : (
         <h1>Loading</h1>
       )}
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

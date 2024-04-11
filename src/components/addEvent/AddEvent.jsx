@@ -50,7 +50,7 @@ const AddEvent = () => {
   return (
     <div className={styles.AddEvent}>
       <h1>Aggiungi evento</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.FormAddEvent}>
         <select name="category" onChange={handleChange}>
           {categories.map((category, key) => (
             <option key={key} value={category.name}>
@@ -70,7 +70,7 @@ const AddEvent = () => {
           name="capacity"
           value={formData.capacity}
           onChange={handleChange}
-          placeholder="Titolo evento"
+          placeholder="Numero biglietti"
         />
         <Input
           type="text"
@@ -113,7 +113,7 @@ const AddEvent = () => {
           onChange={handleChange}
           placeholder="Indirizzo"
         />
-        <Input type="submit" value="Salva" />
+        <Input type="submit" value="Salva" extraClass="pippo" />
       </form>
     </div>
   );

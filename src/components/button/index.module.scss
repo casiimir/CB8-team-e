@@ -1,6 +1,15 @@
+@import "../../styles/colors.module.scss";
+
 .Button {
-    border-radius: 20px;
-    background-color: #30d4daff;
-    width: 300px;
-    height: 40px;
+  color: $text-color;
+  background-color: $button-color;
+  border-radius: 20px;
+  width: 140px;
+  height: 40px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $hover-button-color;
+  }
 }

@@ -17,10 +17,10 @@ const HTTP_GET = async (end_point, params = {}) => {
   return data.data;
 };
 
-const HTTP_POST = async (end_point, body) => {
+const HTTP_POST = async (end_point, body, contentType = true) => {
   const data = await fetch(`${BASE_URL}${end_point}`, {
     method: "POST",
-    headers: {
+    headers: contentType && {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),

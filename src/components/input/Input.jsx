@@ -9,9 +9,10 @@ const Input = ({
   value,
   onChange,
   icon,
+  extraClass = "",
 }) => {
   return (
-    <div className={styles.BoxInput}>
+    <div className={`${extraClass && styles[extraClass]} ${styles.BoxInput}`}>
       <div className={styles.Icon}>{icon}</div>
       <input
         type={type}

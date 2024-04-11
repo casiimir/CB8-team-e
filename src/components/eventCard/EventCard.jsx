@@ -5,7 +5,7 @@ const EventCard = ({ event, endPoint = "event" }) => {
     <div key={event._id} className={styles.Event}>
       <img
         src={
-          event.poster.includes("http")
+          event?.poster.includes("http")
             ? event.poster
             : `events/${event.poster}`
         }
@@ -14,7 +14,7 @@ const EventCard = ({ event, endPoint = "event" }) => {
       <div className={styles.EventInfo}>
         <h4>{event.title}</h4>
         <p>Data: {event.date}</p>
-        <button>
+        <button className={styles.EventCardBtn}>
           <a
             href={`${endPoint}/${event.ticketId ? event.ticketId : event._id}`}
           >

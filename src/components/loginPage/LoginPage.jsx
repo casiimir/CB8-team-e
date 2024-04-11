@@ -1,11 +1,13 @@
-import { useState } from "react";
 import styles from "./index.module.scss";
-import Button from "../button";
-import Input from "../input";
+
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { FiMail } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { signIn } from "next-auth/react";
-import { Router, useRouter } from "next/router";
+
+import Button from "../button";
+import Input from "../input";
 import Modal from "../modal";
 
 const LoginPage = () => {
@@ -36,11 +38,8 @@ const LoginPage = () => {
   return (
     <div className={styles.LoginPage}>
       {isToggled && <Modal buttonHandleSumbit={handleSumbit} />}
-      <h2 className={styles.Title_LoginPage}>Accedi alla Moveeda!</h2>
+      <h2>Accedi alla Moveeda!</h2>
       <form className={styles.Form} onSubmit={handleSumbit}>
-        <label htmlFor="username" className={styles.Label}>
-          Username:{" "}
-        </label>
         <div className={styles.Box_Input}>
           <Input
             type="text"
@@ -49,12 +48,10 @@ const LoginPage = () => {
             value={username}
             onChange={handleSetUsername}
             icon={<FiMail />}
+            placeholder="Username"
           />
         </div>
 
-        <label htmlFor="password" className={styles.Label}>
-          Password:
-        </label>
         <div className={styles.Box_Input}>
           <Input
             type="password"
@@ -63,12 +60,13 @@ const LoginPage = () => {
             value={password}
             onChange={handleSetPassword}
             icon={<RiLockPasswordLine />}
+            placeholder="Password"
           />
         </div>
       </form>
       <Button textButton="Accedi" onClick={handleSumbit} type="submit" />
       <p>
-        Non hai un account Moveeda?? <a href="./sign">Registrati</a>{" "}
+        Non hai un account Moveeda?? <a href="./register">Registrati</a>{" "}
       </p>
     </div>
   );

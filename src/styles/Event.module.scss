@@ -4,24 +4,20 @@
 
   .Wrapper {
     width: 90%;
-    height: 100%;
     margin: 0 auto;
-    position: relative;
+  }
+}
 
-    .Prenota {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      bottom: 2rem;
+.Prenota {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-      input {
-        width: 10%;
-      }
-
-      button {
-        width: 90%;
-      }
-    }
+  input {
+    width: 10%;
+    border: 1 px solid violet;
+    background-color: greenyellow;
   }
 }

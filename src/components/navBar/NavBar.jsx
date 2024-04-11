@@ -9,10 +9,15 @@ import {
   FaCircleUser,
   FaSquarePlus,
   FaTableList,
+  FaDoorOpen,
 } from "react-icons/fa6";
 
-const NavBar = () => {
+import { RiLoginBoxFill } from "react-icons/ri";
+
+const NavBar = ({ userType }) => {
   const router = useRouter();
+
+  console.log(userType);
 
   return (
     <nav className={styles.NavBar}>
@@ -33,29 +38,54 @@ const NavBar = () => {
             <FaMagnifyingGlass />
           </Link>
         </li>
+        {userType !== undefined ? (
+          <>
+            {userType === "organizer" ? (
+              <li>
+                <Link href="/add">
+                  <FaSquarePlus />
+                </Link>
+              </li>
+            ) : (
+              <></>
+            )}
+            <li>
+              <Link
+                className={
+                  router.pathname === "/myTickets" ? styles.Active : ""
+                }
+                href="/myTickets"
+              >
+                <FaTicket />
+              </Link>
+            </li>
+            {userType === "organizer" ? (
+              <li>
+                <FaTableList />
+              </li>
+            ) : (
+              <></>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
         <li>
-          <Link href="/add">
-            <FaSquarePlus />
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={router.pathname === "/myTickets" ? styles.Active : ""}
-            href="/myTickets"
-          >
-            <FaTicket />
-          </Link>
-        </li>
-        <li>
-          <FaTableList />
-        </li>
-        <li>
-          <Link
-            className={router.pathname === "/login" ? styles.Active : ""}
-            href="/login"
-          >
-            <FaCircleUser />
-          </Link>
+          {userType ? (
+            <Link
+              className={router.pathname === "/profile" ? styles.Active : ""}
+              href="/profile"
+            >
+              <FaCircleUser />
+            </Link>
+          ) : (
+            <Link
+              className={router.pathname === "/login" ? styles.Active : ""}
+              href="/login"
+            >
+              <RiLoginBoxFill />
+            </Link>
+          )}
         </li>
       </ul>
     </nav>

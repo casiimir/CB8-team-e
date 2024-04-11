@@ -1,6 +1,8 @@
 import styles from "./index.module.scss";
+
 import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+
 import Container from "../container";
 import { HTTP_GET } from "../../../libs/HTTP";
 
@@ -10,7 +12,7 @@ const Hero = () => {
 
   useEffect(() => {
     const getEvents = async () => {
-      const events = await HTTP_GET("/api/events?limit=5");
+      const events = await HTTP_GET("events?limit=5");
       setEvents(events);
     };
     getEvents();

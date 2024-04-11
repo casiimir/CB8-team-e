@@ -23,7 +23,7 @@ export default function Event({ session }) {
   const [ticketId, setTicketId] = useState("");
 
   const handleSubmit = async () => {
-    router.push(`../ticket/${ticketId}`);
+    router.push(`../login`);
   };
 
   const onClickPrenota = async () => {
@@ -96,7 +96,7 @@ export default function Event({ session }) {
       ) : (
         <h1>Loading</h1>
       )}
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

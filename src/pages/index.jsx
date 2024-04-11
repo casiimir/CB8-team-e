@@ -11,7 +11,7 @@ import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
 import NavBar from "@/components/navBar";
 
-const Home = () => {
+const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
@@ -55,10 +55,18 @@ const Home = () => {
           ))}
         </section>
         <EventList events={events} title={selectedTab} />
-        <NavBar />
+        <NavBar userType={session?.user?.type} />
       </main>
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
+}
 
 export default Home;

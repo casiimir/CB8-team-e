@@ -5,7 +5,7 @@ const EventCard = ({ event, endPoint = "event" }) => {
     <div key={event._id} className={styles.Event}>
       <img
         src={
-          event.poster.includes("http")
+          event?.poster.includes("http")
             ? event.poster
             : `events/${event.poster}`
         }

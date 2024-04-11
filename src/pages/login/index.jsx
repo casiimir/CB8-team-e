@@ -1,5 +1,4 @@
 import Header from "@/components/header";
-
 import LoginPage from "../../components/loginPage";
 import NavBar from "@/components/navBar";
 

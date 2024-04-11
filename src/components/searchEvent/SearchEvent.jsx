@@ -43,6 +43,9 @@ const searchEvent = () => {
         />
         <input type="submit" value="Cerca" className={styles.SearchEventBtn} />
       </form>
+      <div className={styles.EventCatContainer}>
+        {showEventCat && <EventCat />}
+      </div>
       <div className={styles.EventContainer}>
         {eventData?.length > 0 && <EventList events={eventData} />}
         {showEventResult && (
@@ -52,7 +55,6 @@ const searchEvent = () => {
           />
         )}
       </div>
-      {showEventCat && <EventCat />}
     </>
   );
 };

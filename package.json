@@ -17,6 +17,7 @@
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-barcode": "^1.5.1",
+    "react-css-modules": "^4.7.11",
     "react-dom": "^18",
     "react-icons": "^5.0.1"
   },

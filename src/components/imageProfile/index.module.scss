@@ -1,27 +1,24 @@
-
-    .Label {
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    
-    }
-    .Image_Profile{
-     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top: 18px;
-    height: 60px;
-    width: 350px;
-    border-radius: 20px;
-    background-color: azure;
-    }
-    .Icon {
-    margin-bottom: 20px;
-    margin-right: 50px;
-
-    }
-    .Btn{
-        margin-bottom: 20px;
-    }
+.Label {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.Image_Profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 18px;
+  height: 60px;
+  width: 350px;
+  border-radius: 20px;
+  background-color: azure;
+}
+.Icon {
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+.Btn {
+  margin-bottom: 20px;
+}

@@ -1,3 +1,3 @@
-import MyEvents from "./myEvents";
+import MyEvents from "./MyEvents";
 
 export default MyEvents;

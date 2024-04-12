@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Input from "../input";
 import Button from "../button";
-import ImageProfile from "../ImageProfile";
+import ImageProfile from "../imageProfile";
 import { useState, useReducer } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { TiBusinessCard } from "react-icons/ti";

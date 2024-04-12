@@ -1,6 +1,7 @@
 @import "../../styles/colors.module.scss";
 
 .Event {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -15,6 +16,7 @@
   .EventInfo {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 30px;
 
     .EventCardBtn {
@@ -34,5 +36,11 @@
         color: $text-color;
       }
     }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .Event {
+    width: 400px;
   }
 }

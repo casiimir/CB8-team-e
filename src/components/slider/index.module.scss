@@ -53,3 +53,17 @@
     }
   }
 }
+
+@media screen and (min-width: 992px) and (max-width: 1900px) {
+  .Slider {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .Slider {
+    width: 100%;
+    height: 100vh;
+  }
+}

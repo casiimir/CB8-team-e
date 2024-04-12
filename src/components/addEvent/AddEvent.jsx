@@ -60,7 +60,11 @@ const AddEvent = ({ userId }) => {
     <div className={styles.AddEvent}>
       <h1>Aggiungi evento</h1>
       <form onSubmit={handleSubmit} className={styles.FormAddEvent}>
-        <select name="category" onChange={handleChange}>
+        <select
+          name="category"
+          onChange={handleChange}
+          className={styles.SelectForm}
+        >
           {categories.map((category, key) => (
             <option key={key} value={category.name}>
               {category.name}

@@ -1,9 +1,8 @@
-import styles from "@/styles/MyTickets.module.scss";
-
 import { getSession } from "next-auth/react";
 import { HTTP_GET } from "../../../libs/HTTP";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+
 import Header from "@/components/header";
 import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";

@@ -24,5 +24,9 @@
 }
 
 .pippo {
-  border: 1px solid red;
+  border: 1px solid #2cbfbf;
+
+  &:hover {
+    background-color: #03a696;
+  }
 }

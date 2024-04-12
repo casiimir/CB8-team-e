@@ -1,8 +1,10 @@
 .Header {
   margin: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 
   .Logo {
     width: 200px;

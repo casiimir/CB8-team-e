@@ -2,13 +2,15 @@ import styles from "./index.module.scss";
 
 import { HTTP_POST, HTTP_GET } from "../../../libs/HTTP";
 import { useEffect, useState } from "react";
-
+import { MdAddPhotoAlternate } from "react-icons/md";
+import ImageProfile from "../imageProfile";
 import Input from "../input";
 
-const AddEvent = () => {
+const AddEvent = ({ userId }) => {
   const [categories, setCategories] = useState([]);
+  const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
-    organizerId: "123",
+    organizerId: `${userId}`,
     category: "",
     capacity: 0,
     title: "",
@@ -26,6 +28,13 @@ const AddEvent = () => {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleImageChange = (image) => {
+    setFormData({
+      ...formData,
+      poster: image,
     });
   };
 
@@ -91,7 +100,11 @@ const AddEvent = () => {
           value={formData.time}
           onChange={handleChange}
         />
-        <Input type="file" name="poster" onChange={handleChange} />
+        <ImageProfile
+          onImageChange={handleImageChange}
+          icon={<MdAddPhotoAlternate />}
+          type="events"
+        />
         <Input
           type="text"
           name="city"

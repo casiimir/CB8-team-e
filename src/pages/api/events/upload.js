@@ -12,7 +12,7 @@ const readFile = (req, saveLocally) => {
   let options = {};
 
   if (saveLocally) {
-    options.uploadDir = path.join(process.cwd(), "/public/user");
+    options.uploadDir = path.join(process.cwd(), "/public/events");
     options.filename = (name, ext, path, form) => {
       return path.originalFilename;
     };
@@ -39,9 +39,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    await fs.readdir(path.join(process.cwd() + "/public", "/user"));
+    await fs.readdir(path.join(process.cwd() + "/public", "/events"));
   } catch (error) {
-    await fs.mkdir(path.join(process.cwd() + "/public", "/user"));
+    await fs.mkdir(path.join(process.cwd() + "/public", "/events"));
   }
 
   const { filename } = await readFile(req, true);

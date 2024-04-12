@@ -61,7 +61,9 @@ const NavBar = ({ userType }) => {
             </li>
             {userType === "organizer" ? (
               <li>
-                <FaTableList />
+                <Link href="/myEvents">
+                  <FaTableList />
+                </Link>
               </li>
             ) : (
               <></>

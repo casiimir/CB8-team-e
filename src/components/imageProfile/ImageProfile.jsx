@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./index.module.scss";
 import { HTTP_POST } from "../../../libs/HTTP";
 
-const ImageProfile = ({ onImageChange }) => {
+const ImageProfile = ({ onImageChange, type = "users" }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = async (event) => {
@@ -12,7 +12,7 @@ const ImageProfile = ({ onImageChange }) => {
     formData.append("file", image);
 
     try {
-      fetch("/api/users/upload", {
+      fetch(`/api/${type}/upload`, {
         method: "POST",
         body: formData,
       })

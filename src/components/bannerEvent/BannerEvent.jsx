@@ -6,7 +6,7 @@ const BannerEvent = ({ img, title }) => {
   return (
     <div className={styles.Banner}>
       <img
-        src={`../events${img}`}
+        src={`../events/${img}`}
         alt={`Locandina evento ${title}`}
         width={300}
         height={500}

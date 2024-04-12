@@ -37,7 +37,7 @@ const RegisterPage = () => {
   const [formState, dispatchFormState] = useReducer(formReducer, {
     email: "",
     password: "",
-    type: "",
+    type: "user",
     username: "",
     businessName: "",
     name: "",
@@ -109,20 +109,25 @@ const RegisterPage = () => {
             icon={<FaRegUser />}
           />
         </div>
-
-        <label htmlFor="businessName" className={styles.Label}>
-          Username Business:{" "}
-        </label>
-        <div className={styles.Box_Input}>
-          <Input
-            type="text"
-            value={formState.businessName}
-            onChange={(e) => {
-              handleFieldChange("businessName", e.target.value);
-            }}
-            icon={<TiBusinessCard />}
-          />
-        </div>
+        {formState.type === "Business" ? (
+          <>
+            <label htmlFor="businessName" className={styles.Label}>
+              Username Business:{" "}
+            </label>
+            <div className={styles.Box_Input}>
+              <Input
+                type="text"
+                value={formState.businessName}
+                onChange={(e) => {
+                  handleFieldChange("businessName", e.target.value);
+                }}
+                icon={<TiBusinessCard />}
+              />
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
 
         <label htmlFor="email" className={styles.Label}>
           Email
@@ -242,7 +247,6 @@ const RegisterPage = () => {
       </form>
 
       <Button textButton="Registrati" onClick={handleSubmit} type="submit" />
-      <p>lore</p>
     </div>
   );
 };

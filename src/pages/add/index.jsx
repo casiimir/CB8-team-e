@@ -7,7 +7,7 @@ export default function AddEventPage({ session }) {
   return (
     <>
       <Header />
-      <AddEvent />
+      <AddEvent userId={session.user.id} />
       <NavBar userType={session?.user?.type} />
     </>
   );

@@ -48,6 +48,7 @@ const Home = ({ session }) => {
           {categories.map((category, key) => (
             <TabButton
               key={category._id}
+              color={category.color}
               onSelect={() => handleSelect(category.name)}
             >
               {category.name.toUpperCase()}

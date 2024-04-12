@@ -46,7 +46,7 @@ const searchEvent = () => {
       <div className={styles.EventCatContainer}>
         {showEventCat && <EventCat />}
       </div>
-      <div className={styles.EventContainer}>
+      <div className={styles.EventsContainer}>
         {eventData?.length > 0 && <EventList events={eventData} />}
         {showEventResult && (
           <FaCircleArrowLeft

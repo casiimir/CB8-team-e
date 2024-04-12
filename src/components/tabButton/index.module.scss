@@ -1,15 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 
+.TabItems {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .TabBtn {
   margin-top: 20px;
-  width: 100px;
-  height: 30px;
+  width: 100%;
+  height: 40px;
   font-family: "League Spartan", sans-serif;
   background-color: #bbb;
-  color: #000000;
+  color: #0d0d0d;
   border: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   text-decoration: line-through;
   cursor: pointer;
+
+  &:focus {
+    background-color: #0d0d0d;
+    color: #ffffff;
+  }
 }

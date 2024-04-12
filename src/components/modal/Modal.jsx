@@ -1,7 +1,9 @@
 import styles from "./index.module.scss";
-import Button from "../button";
+
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
+
+import Button from "../button";
 
 const Modal = ({
   status = "Errore",

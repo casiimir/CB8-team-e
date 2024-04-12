@@ -1,5 +1,7 @@
 import styles from "./index.module.scss";
+
 import { FaCalendar, FaClock, FaLocationDot } from "react-icons/fa6";
+
 import Barcode from "react-barcode";
 
 const TicketInfo = ({ ticket }) => {

@@ -1,6 +1,8 @@
 import styles from "./index.module.scss";
-import Link from "next/link";
+
 import { useRouter } from "next/router";
+
+import Link from "next/link";
 
 import {
   FaHouse,
@@ -9,7 +11,6 @@ import {
   FaCircleUser,
   FaSquarePlus,
   FaTableList,
-  FaDoorOpen,
 } from "react-icons/fa6";
 
 import { RiLoginBoxFill } from "react-icons/ri";
@@ -61,7 +62,9 @@ const NavBar = ({ userType }) => {
             </li>
             {userType === "organizer" ? (
               <li>
-                <FaTableList />
+                <Link href="/myEvents">
+                  <FaTableList />
+                </Link>
               </li>
             ) : (
               <></>

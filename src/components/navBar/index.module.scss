@@ -1,22 +1,22 @@
 .NavBar {
+  width: 90%;
+  height: 54px;
   background-color: #0d0d0d;
-  position: fixed;
   bottom: 0;
   margin-bottom: 5px;
-  width: 90%;
-  height: 40px;
   border-radius: 20px;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
 
   .NavMenu {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 24px;
+    padding: 16px;
 
     a {
       color: #ffffff;
@@ -25,5 +25,11 @@
     .Active {
       color: #03a696;
     }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .NavBar {
+    display: none;
   }
 }

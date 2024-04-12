@@ -4,8 +4,16 @@
 
 .EventContainer {
   width: 100%;
-  padding: 30px;
+  margin-bottom: 80px;
+  padding: 38px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 60px;
+}
+
+@media screen and (min-width: 992px) {
+  .EventContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

@@ -2,10 +2,6 @@ import styles from "./index.module.scss";
 
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-
-
-import Link from "next/link";
-
 import Link from "next/link";
 
 import {
@@ -80,7 +76,9 @@ const NavBar = ({ userType }) => {
         <li>
           {userType ? (
             <Link
-              className={router.pathname === `/user/${userId}` ? styles.Active : ""}
+              className={
+                router.pathname === `/user/${userId}` ? styles.Active : ""
+              }
               href={`/user/${userId}`}
             >
               <FaCircleUser />

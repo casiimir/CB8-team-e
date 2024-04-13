@@ -31,9 +31,6 @@ const ImageProfile = ({ onImageChange, type = "users" }) => {
 
   return (
     <>
-      <label htmlFor="imageProfile" className={styles.Label}>
-        Carica un'immagine profilo
-      </label>
       <div className={styles.Image_Profile}>
         <input
           type="file"

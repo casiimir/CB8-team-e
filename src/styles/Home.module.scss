@@ -2,4 +2,13 @@
   margin-top: 20px;
   display: flex;
   overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    background-color: rgb(187, 187, 187, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(187, 187, 187, 0.4);
+    border-radius: 24px;
+  }
 }

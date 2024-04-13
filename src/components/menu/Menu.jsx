@@ -13,7 +13,7 @@ const Menu = () => {
           <li>Cerca evento</li>
         </Link>
         <Link href="/add">
-          <li>aggiungi evento</li>
+          <li>Aggiungi evento</li>
         </Link>
         <Link href="/myTickets">
           <li>Le mie prenotazioni</li>

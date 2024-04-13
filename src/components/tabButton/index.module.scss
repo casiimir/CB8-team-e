@@ -9,7 +9,7 @@
 
 .TabBtn {
   margin-top: 20px;
-  width: 100%;
+  width: 140px;
   height: 40px;
   font-family: "League Spartan", sans-serif;
   background-color: #bbb;
@@ -22,5 +22,11 @@
   &:focus {
     background-color: #0d0d0d;
     color: #ffffff;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .TabBtn {
+    width: 100%;
   }
 }

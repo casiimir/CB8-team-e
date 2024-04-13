@@ -53,7 +53,7 @@ export default function Ticket({ session }) {
       ) : (
         <h1>Loading...</h1>
       )}
-      <NavBar />
+      <NavBar userType={session?.user?.type} />
     </>
   );
 }

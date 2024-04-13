@@ -14,8 +14,6 @@ export default function MyTickets({ session }) {
   useEffect(() => {
     if (!session) {
       router.push("/login");
-    } else if (session.user.type === "business") {
-      router.push("/myEvents");
     }
     const getTickets = async () => {
       const tickets = await HTTP_GET(
@@ -34,7 +32,7 @@ export default function MyTickets({ session }) {
         events={tickets}
         endPoint={"ticket"}
       />
-      <NavBar userType={session?.user?.type} />
+      <NavBar userType={session.user.type} />
     </>
   );
 }

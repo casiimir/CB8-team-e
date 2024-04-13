@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import EventCat from "../eventCat";
 import EventList from "../eventList";
-
+import { HTTP_GET } from "../../../libs/HTTP";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useState } from "react";
 
@@ -13,17 +13,14 @@ const searchEvent = () => {
 
   const onInputInsert = (e) => setInputValue(e.target.value);
 
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch(`/api/search?query=${inputValue}`)
-      .then((res) => res.json())
-      .then((data) => setEventData(data.data));
+    const events = await HTTP_GET(`search?query=${inputValue}`);
+    setEventData(events);
     setShowEventResult(true);
     setShowEventCat(false);
   };
 
-  //Funzione che torna indietro dall'anteprima dell'evento
   const handleGoBack = () => {
     setEventData({});
     setShowEventResult(false);

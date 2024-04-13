@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Header from "@/components/header";
 import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function MyTickets({ session }) {
   const [tickets, setTickets] = useState([]);
@@ -35,6 +36,7 @@ export default function MyTickets({ session }) {
         endPoint={"ticket"}
       />
       <NavBar userType={session?.user?.type} />
+      <Footer />
     </>
   );
 }

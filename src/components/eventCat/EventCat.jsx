@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+
 import EventList from "../eventList";
 
 import { useState, useEffect } from "react";
@@ -20,7 +21,6 @@ const EventCat = () => {
   };
 
   return (
-
     <>
       <div className={styles.EventCatContainer}>
         {categoriesData.map((categoria, key) => (
@@ -36,7 +36,6 @@ const EventCat = () => {
               src={`categories/${categoria.background}`}
               alt={categoria.name}
             />
-
           </div>
         ))}
       </div>

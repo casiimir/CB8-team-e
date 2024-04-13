@@ -12,6 +12,7 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function Event({ session }) {
   const router = useRouter();
@@ -97,6 +98,7 @@ export default function Event({ session }) {
         <h1>Loading</h1>
       )}
       <NavBar userType={session?.user?.type} />
+      <Footer />
     </>
   );
 }

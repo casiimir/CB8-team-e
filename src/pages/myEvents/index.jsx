@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import MyEvents from "@/components/myEvents";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function myEventsList() {
   return (
@@ -8,6 +9,7 @@ export default function myEventsList() {
       <Header />
       <MyEvents />
       <NavBar />
+      <Footer />
     </>
   );
 }

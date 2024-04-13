@@ -3,6 +3,7 @@ import { getSession } from "next-auth/react";
 import Header from "@/components/header";
 import AddEvent from "@/components/addEvent";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function AddEventPage({ session }) {
   return (
@@ -10,6 +11,7 @@ export default function AddEventPage({ session }) {
       <Header />
       <AddEvent userId={session.user.id} />
       <NavBar userType={session?.user?.type} />
+      <Footer />
     </>
   );
 }

@@ -4,7 +4,6 @@ import { HTTP_POST, HTTP_GET } from "../../../libs/HTTP";
 import { useEffect, useState } from "react";
 import { MdAddPhotoAlternate } from "react-icons/md";
 
-import Button from "../button";
 import ImageProfile from "../imageProfile";
 import Input from "../input";
 import Button from "../button";
@@ -63,17 +62,20 @@ const AddEvent = ({ userId }) => {
     <div className={styles.AddEvent}>
       <h1>Aggiungi evento</h1>
       <form onSubmit={handleSubmit} className={styles.FormAddEvent}>
-        <select
-          name="category"
-          onChange={handleChange}
-          className={styles.SelectForm}
-        >
-          {categories.map((category, key) => (
-            <option key={key} value={category.name}>
-              {category.name}
-            </option>
-          ))}
-        </select>
+        <div className={styles.Box_Input}>
+          <select
+            name="category"
+            onChange={handleChange}
+            className={styles.Select}
+          >
+            <option>Seleziona categoria</option>
+            {categories.map((category, key) => (
+              <option key={key} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className={styles.Box_Input}>
           <Input
             type="text"
@@ -92,27 +94,33 @@ const AddEvent = ({ userId }) => {
             placeholder="Numero biglietti"
           />
         </div>
-        <Input
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Descrizione evento"
-        />
+        <div className={styles.Box_Input}>
+          <Input
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Descrizione evento"
+          />
+        </div>
+
         <div className={styles.Box_Input}>
           <Input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
+            placeholder="Data evento"
           />
         </div>
-        <Input
-          type="time"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-        />
+        <div className={styles.Box_Input}>
+          <Input
+            type="time"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+          />
+        </div>
         <p>Carica un'immagine dell'evento</p>
         <div className={styles.Box_Input}>
           <ImageProfile
@@ -121,13 +129,15 @@ const AddEvent = ({ userId }) => {
             type="events"
           />
         </div>
-        <Input
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          placeholder="Città"
-        />
+        <div className={styles.Box_Input}>
+          <Input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="Città"
+          />
+        </div>
         <div className={styles.Box_Input}>
           <Input
             type="text"
@@ -137,14 +147,16 @@ const AddEvent = ({ userId }) => {
             placeholder="Luogo"
           />
         </div>
-        <Input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Indirizzo"
-        />
-        <Button type="submit" value="Salva" />
+        <div className={styles.Box_Input}>
+          <Input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Indirizzo"
+          />
+        </div>
+        <Button type="submit" textButton="Salva" onClick={handleSubmit} />
       </form>
     </div>
   );

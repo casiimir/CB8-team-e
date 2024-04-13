@@ -25,7 +25,13 @@ const NavBar = ({ userType }) => {
       <ul className={styles.NavMenu}>
         <li>
           <Link
-            className={router.pathname === "/" ? styles.Active : ""}
+            className={
+              router.pathname === "/"
+                ? styles.Active
+                : router.pathname.includes("/event")
+                ? styles.Active
+                : ""
+            }
             href="/"
           >
             <FaHouse />
@@ -43,7 +49,10 @@ const NavBar = ({ userType }) => {
           <>
             {userType === "business" ? (
               <li>
-                <Link href="/add">
+                <Link
+                  href="/add"
+                  className={router.pathname === "/add" ? styles.Active : ""}
+                >
                   <FaSquarePlus />
                 </Link>
               </li>
@@ -53,7 +62,11 @@ const NavBar = ({ userType }) => {
             <li>
               <Link
                 className={
-                  router.pathname === "/myTickets" ? styles.Active : ""
+                  router.pathname === "/myTickets"
+                    ? styles.Active
+                    : router.pathname.includes("/ticket")
+                    ? styles.Active
+                    : ""
                 }
                 href="/myTickets"
               >
@@ -62,7 +75,12 @@ const NavBar = ({ userType }) => {
             </li>
             {userType === "business" ? (
               <li>
-                <Link href="/myEvents">
+                <Link
+                  href="/myEvents"
+                  className={
+                    router.pathname === "/myEvents" ? styles.Active : ""
+                  }
+                >
                   <FaTableList />
                 </Link>
               </li>
@@ -76,10 +94,8 @@ const NavBar = ({ userType }) => {
         <li>
           {userType ? (
             <Link
-              className={
-                router.pathname === `/user/${userId}` ? styles.Active : ""
-              }
-              href={`/user/${userId}`}
+              className={router.pathname === `/profile` ? styles.Active : ""}
+              href={`/profile`}
             >
               <FaCircleUser />
             </Link>

@@ -1,6 +1,10 @@
 import styles from "./index.module.scss";
 
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
+
+import Link from "next/link";
 
 import Link from "next/link";
 
@@ -17,8 +21,8 @@ import { RiLoginBoxFill } from "react-icons/ri";
 
 const NavBar = ({ userType }) => {
   const router = useRouter();
-
-  console.log(userType);
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
   return (
     <nav className={styles.NavBar}>
@@ -60,7 +64,7 @@ const NavBar = ({ userType }) => {
                 <FaTicket />
               </Link>
             </li>
-            {userType === "organizer" ? (
+            {userType === "business" ? (
               <li>
                 <Link href="/myEvents">
                   <FaTableList />
@@ -76,8 +80,8 @@ const NavBar = ({ userType }) => {
         <li>
           {userType ? (
             <Link
-              className={router.pathname === "/profile" ? styles.Active : ""}
-              href="/profile"
+              className={router.pathname === `/user/${userId}` ? styles.Active : ""}
+              href={`/user/${userId}`}
             >
               <FaCircleUser />
             </Link>

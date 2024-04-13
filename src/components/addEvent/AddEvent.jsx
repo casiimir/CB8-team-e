@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import ImageProfile from "../imageProfile";
 import Input from "../input";
+import Button from "../button";
 
 const AddEvent = ({ userId }) => {
   const [categories, setCategories] = useState([]);
@@ -130,7 +131,7 @@ const AddEvent = ({ userId }) => {
           onChange={handleChange}
           placeholder="Indirizzo"
         />
-        <Input type="submit" value="Salva" extraClass="pippo" />
+        <Button type="submit" value="Salva" />
       </form>
     </div>
   );

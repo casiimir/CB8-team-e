@@ -56,7 +56,7 @@ const Home = ({ session }) => {
           ))}
         </section>
         <EventList events={events} title={selectedTab} />
-        <NavBar userType={session?.user?.type} />
+        <NavBar userType={session?.user?.type} userId={session?.users?.id} />
       </main>
     </>
   );

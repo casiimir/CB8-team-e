@@ -7,6 +7,7 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import Button from "../button";
 import ImageProfile from "../imageProfile";
 import Input from "../input";
+import Button from "../button";
 
 const AddEvent = ({ userId }) => {
   const [categories, setCategories] = useState([]);

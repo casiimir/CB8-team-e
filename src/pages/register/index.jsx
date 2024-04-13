@@ -1,3 +1,4 @@
+
 import Header from "@/components/header";
 import RegisterPage from "../../components/RegisterPage";
 import NavBar from "@/components/navBar";

@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 }
 
 async function getAllReservation(req, res) {
-  const { page = 1, limit = 3 } = req.query;
+  const { page = 1, limit = 50 } = req.query;
 
   try {
     const reservation = await Reservation.find()

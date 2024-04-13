@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 }
 
 async function getAllUsers(req, res) {
-  const { page = 1, limit = 3 } = req.query;
+  const { page = 1, limit = 100 } = req.query;
 
   try {
     const users = await User.find()

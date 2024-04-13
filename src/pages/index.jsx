@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.scss";
 
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { HTTP_GET } from "../../libs/HTTP";
 
 import Head from "next/head";
 import Header from "@/components/header";
@@ -16,18 +16,21 @@ const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
-  const router = useRouter();
 
   useEffect(() => {
-    fetch(`/api/events/search?category=${selectedTab}`)
-      .then((res) => res.json())
-      .then((events) => setEvents(events.data));
+    const getCategories = async () => {
+      const events = await HTTP_GET(`events/search?category=${selectedTab}`);
+      setEvents(events);
+    };
+    getCategories();
   }, [selectedTab]);
 
   useEffect(() => {
-    fetch("/api/categories")
-      .then((res) => res.json())
-      .then((categories) => setCategories(categories.data));
+    const getCategories = async () => {
+      const categories = await HTTP_GET("categories");
+      setCategories(categories);
+    };
+    getCategories();
   }, []);
 
   const handleSelect = (selectedButton) => {

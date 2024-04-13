@@ -1,23 +1,24 @@
 import styles from "./index.module.scss";
 
 import EventList from "../eventList";
-
 import { useState, useEffect } from "react";
+import { HTTP_GET } from "../../../libs/HTTP";
 
 const EventCat = () => {
   const [categoriesData, setCategoriesData] = useState([{}]);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("/api/categories")
-      .then((res) => res.json())
-      .then((categories) => setCategoriesData(categories.data));
+    const getCategories = async () => {
+      const categories = await HTTP_GET("categories");
+      setCategoriesData(categories);
+    };
+    getCategories();
   }, []);
 
-  const onHandleCategory = (categoryName) => {
-    fetch(`/api/events/search?category=${categoryName}`)
-      .then((res) => res.json())
-      .then((events) => setEvents(events.data));
+  const onHandleCategory = async (categoryName) => {
+    const events = HTTP_GET(`/api/events/search?category=${categoryName}`);
+    setEvents(events);
   };
 
   return (
@@ -39,7 +40,7 @@ const EventCat = () => {
           </div>
         ))}
       </div>
-      <EventList events={events} />
+      {events.length > 0 && <EventList events={events} />}
     </>
   );
 };

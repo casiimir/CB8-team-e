@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Input from "../input";
-
 import Button from "../button";
+import Modal from "../modal";
 import ImageProfile from "../ImageProfile";
 import { useState, useReducer } from "react";
 import { FaRegUser } from "react-icons/fa";
@@ -19,7 +19,12 @@ import { useRouter } from "next/router";
 const RegisterPage = () => {
   const [tempPass, setTempPass] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [showModal, setShowModal] = useState(false); 
+  const [modalStatus, setModalStatus] = useState(""); 
+  const [modalTitle, setModalTitle] = useState(""); 
+  const [modalText, setModalText] = useState("");
   const router = useRouter();
+  
   const handleTempPassChange = (e) => {
     setTempPass(e.target.value);
   };
@@ -71,9 +76,32 @@ const RegisterPage = () => {
     formState.imageProfile = uploadedFile;
     const res = await HTTP_POST(`users/`, formState);
     if (res.status === "OK") {
+      setShowModal(true);
+      setModalStatus("Successo");
+      setModalTitle("Registrazione avvenuta con successo!");
+      setModalText("Ora puoi effettuare il login!");
       router.push("/login");
-    }
+    } else {
+      setShowModal(true);
+      setModalStatus("Errore");
+      setModalTitle("Qualcosa è andato storto!");
+      setModalText("Tutti i campi sono obbligatori, riprova!");
+         }
   };
+
+    const buttonHandleSumbit = () => {
+ switch (modalStatus) {
+  case "Successo":
+  router.push("/login");
+  break;
+  case "Errore":
+    setShowModal(false)
+    break;
+  case "Attenzione!":
+  setShowModal(false)
+  break;
+  default:
+ }}
 
   return (
     <div className={styles.RegisterPage}>
@@ -230,6 +258,18 @@ const RegisterPage = () => {
       </form>
 
       <Button textButton="Registrati" onClick={handleSubmit} type="submit" />
+
+      {showModal && (
+        <Modal
+          status={modalStatus}
+          title={modalTitle}
+          text={modalText}
+          textButton="OK"
+          buttonHandleSubmit={buttonHandleSumbit}
+        />
+      )}
+
+
     </div>
   );
 };

@@ -10,6 +10,7 @@ import Slider from "@/components/slider";
 import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
@@ -60,6 +61,7 @@ const Home = ({ session }) => {
         </section>
         <EventList events={events} title={selectedTab} />
         <NavBar userType={session?.user?.type} userId={session?.users?.id} />
+        <Footer />
       </main>
     </>
   );

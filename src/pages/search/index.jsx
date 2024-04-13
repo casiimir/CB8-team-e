@@ -1,7 +1,9 @@
+import { getSession } from "next-auth/react";
+
 import Header from "@/components/header";
 import SearchEvent from "../../components/searchEvent";
-import { getSession } from "next-auth/react";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function SearchEventPage({ session }) {
   return (
@@ -9,6 +11,7 @@ export default function SearchEventPage({ session }) {
       <Header />
       <SearchEvent />
       <NavBar userType={session?.user?.type} />
+      <Footer />
     </>
   );
 }

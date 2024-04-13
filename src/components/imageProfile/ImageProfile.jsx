@@ -1,6 +1,6 @@
-import { useState } from "react";
 import styles from "./index.module.scss";
-import { HTTP_POST } from "../../../libs/HTTP";
+
+import { useState } from "react";
 
 const ImageProfile = ({ onImageChange, type = "users" }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -42,7 +42,9 @@ const ImageProfile = ({ onImageChange, type = "users" }) => {
         />
       </div>
       <div className={styles.Icon}>
-        {/* {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt="Selected Image" />} */}
+        {selectedImage && (
+          <img src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
+        )}
       </div>
     </>
   );

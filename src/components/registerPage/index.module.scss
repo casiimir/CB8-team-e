@@ -38,6 +38,13 @@
   }
 }
 
+// Start responsives
+@media screen and (min-width: 992px) {
+  .RegisterPage {
+    margin-top: 100px;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .Box_Input {
     max-width: 400px;

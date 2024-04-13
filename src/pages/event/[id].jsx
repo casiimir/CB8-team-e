@@ -15,6 +15,7 @@ import NavBar from "@/components/navBar";
 import { ImSad } from "react-icons/im";
 import Loader from "@/components/loader";
 import EventMap from "@/components/eventMap";
+import Footer from "@/components/footer";
 
 export default function Event({ session }) {
   const router = useRouter();
@@ -29,16 +30,16 @@ export default function Event({ session }) {
   useEffect(() => {
     switch (true) {
       case ticketsNumber > 4:
-        setTicketsNumber(4);        
+        setTicketsNumber(4);
         break;
-        case event.capacity < ticketsNumber:
+      case event.capacity < ticketsNumber:
         setTicketsNumber(event.capacity);
         break;
       case event.capacity == 0:
         setIsToggled(true);
-        setStatusModal("Attenzione")
-        setModalTitle("Evento SOLD OUT")
-        setTextModal("Non ci sono posti disponibili")
+        setStatusModal("Attenzione");
+        setModalTitle("Evento SOLD OUT");
+        setTextModal("Non ci sono posti disponibili");
         break;
       default:
         setIsToggled(false);
@@ -48,39 +49,38 @@ export default function Event({ session }) {
 
   const buttonHandleSubmit = () => {
     switch (statusModal) {
-     case "Successo":
-      setIsToggled(false);
-      router.push(`/ticket/${ticketId}`);
-     break;
-     case "Errore":
-      setIsToggled(false)
-       break;
-     case "Attenzione":
-      setIsToggled(false)
-     break;
-     default:
-    }}    
+      case "Successo":
+        setIsToggled(false);
+        router.push(`/ticket/${ticketId}`);
+        break;
+      case "Errore":
+        setIsToggled(false);
+        break;
+      case "Attenzione":
+        setIsToggled(false);
+        break;
+      default:
+    }
+  };
 
-    
-    const handleUpdateData = async () => {
-        const response = await fetch(`/api/events/${router.query.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ "capacity": event.capacity - ticketsNumber}),
-        });
-        const data = await response.json();
-           };
-       
+  const handleUpdateData = async () => {
+    const response = await fetch(`/api/events/${router.query.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ capacity: event.capacity - ticketsNumber }),
+    });
+    const data = await response.json();
+  };
 
   const onClickPrenota = async () => {
     if (!session) {
       setIsToggled(true);
-      setStatusModal("Errore"); 
+      setStatusModal("Errore");
       setModalTitle("Iscrivi o Accedi");
       setTextModal("Bisogna essere registrati per prenotare la MOVEEDA!");
-            return;
+      return;
     }
 
     const reservation = {
@@ -100,7 +100,7 @@ export default function Event({ session }) {
       handleUpdateData(event._id);
     } else {
       setIsToggled(true);
-      setStatusModal("Errore"); 
+      setStatusModal("Errore");
       setModalTitle("Qualcosa è andato storto");
       setTextModal("Prenotazione fallita, riprova più tardi!");
     }
@@ -143,25 +143,30 @@ export default function Event({ session }) {
             <EventMap address={event.address} />
           </div>
           <div className={styles.Prenota}>
-          {event.capacity > 0 ? (
-    <>
-      <Input
-        type={"number"}
-        required={true}
-        value={ticketsNumber}
-        onChange={handleSetTicketNumber}
-      />
-      <Button textButton={"Prenota"} onClick={onClickPrenota} />
-    </>
-  ) : (
-    <p> {event.title} ha esaurito il numero di prenotazioni disponibili! <ImSad />   </p>
-  )}
+            {event.capacity > 0 ? (
+              <>
+                <Input
+                  type={"number"}
+                  required={true}
+                  value={ticketsNumber}
+                  onChange={handleSetTicketNumber}
+                />
+                <Button textButton={"Prenota"} onClick={onClickPrenota} />
+              </>
+            ) : (
+              <p>
+                {" "}
+                {event.title} ha esaurito il numero di prenotazioni disponibili!{" "}
+                <ImSad />{" "}
+              </p>
+            )}
           </div>
         </div>
       ) : (
         <Loader />
       )}
       <NavBar userType={session?.user?.type} />
+      <Footer />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+
 import EventList from "../eventList";
 import { useState, useEffect } from "react";
 import { HTTP_GET } from "../../../libs/HTTP";

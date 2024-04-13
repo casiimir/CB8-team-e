@@ -1,7 +1,7 @@
-
 import Header from "@/components/header";
 import RegisterPage from "../../components/RegisterPage";
 import NavBar from "@/components/navBar";
+import Footer from "@/components/footer";
 
 export default function Register() {
   return (
@@ -9,6 +9,7 @@ export default function Register() {
       <Header />
       <RegisterPage />
       <NavBar />
+      <Footer />
     </>
   );
 }

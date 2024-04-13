@@ -16,6 +16,10 @@ li {
 
 a {
   text-decoration: none;
+
+  &:visited {
+    color: #0d0d0d;
+  }
 }
 
 button {

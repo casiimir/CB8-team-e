@@ -108,9 +108,7 @@ const RegisterPage = () => {
       <h1>Registrati a Moveeda!</h1>
 
       <form className={styles.Form} onSubmit={handleSubmit}>
-        <label htmlFor="type" className={styles.Label}>
-          Vuoi partecipare o creare eventi?
-        </label>
+        <label htmlFor="type">Vuoi partecipare o creare eventi?</label>
         <div className={styles.Box_Input}>
           <select
             name="type"

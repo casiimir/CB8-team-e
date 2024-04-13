@@ -14,9 +14,7 @@ const MyEvents = () => {
     };
     getMyEvents();
   }, []);
-  return (
-    <EventList title={"i miei eventi"} events={myEvent} endPoint={"events"} />
-  );
+  return <EventList title={"i miei eventi"} events={myEvent} />;
 };
 
 export default MyEvents;

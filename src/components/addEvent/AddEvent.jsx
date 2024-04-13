@@ -4,13 +4,12 @@ import { HTTP_POST, HTTP_GET } from "../../../libs/HTTP";
 import { useEffect, useState } from "react";
 import { MdAddPhotoAlternate } from "react-icons/md";
 
-import Button from "../button";
+import Button from "../Button";
 import ImageProfile from "../imageProfile";
 import Input from "../input";
 
 const AddEvent = ({ userId }) => {
   const [categories, setCategories] = useState([]);
-  const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
     organizerId: `${userId}`,
     category: "",
@@ -143,7 +142,7 @@ const AddEvent = ({ userId }) => {
           onChange={handleChange}
           placeholder="Indirizzo"
         />
-        <Button type="submit" value="Salva" />
+        <Button type="submit" textButton="Salva" />
       </form>
     </div>
   );

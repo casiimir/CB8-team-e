@@ -13,6 +13,8 @@ import Input from "@/components/input";
 import Modal from "@/components/modal";
 import NavBar from "@/components/navBar";
 import { ImSad } from "react-icons/im";
+import Loader from "@/components/loader";
+import EventMap from "@/components/eventMap";
 
 export default function Event({ session }) {
   const router = useRouter();
@@ -138,6 +140,7 @@ export default function Event({ session }) {
           <div className={styles.Wrapper}>
             <BannerEvent img={event.poster} title={event.title} />
             <EventDetails event={event} />
+            <EventMap address={event.address} />
           </div>
           <div className={styles.Prenota}>
           {event.capacity > 0 ? (
@@ -156,7 +159,7 @@ export default function Event({ session }) {
           </div>
         </div>
       ) : (
-        <h1>Loading</h1>
+        <Loader />
       )}
       <NavBar userType={session?.user?.type} />
     </>

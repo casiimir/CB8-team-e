@@ -27,7 +27,7 @@ const EventDetails = ({ event }) => {
         </div>
         <div className={styles.Capacity}>
           <p>
-            <FaTicket /> {event.capacity} posti rimanenti
+          <FaTicket /> {event.capacity > 0 ? `${event.capacity} posti rimanenti` : 'Evento Sold Out!'}
           </p>
         </div>
       </div>

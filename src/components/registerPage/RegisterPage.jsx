@@ -1,7 +1,8 @@
 import styles from "./index.module.scss";
 import Input from "../input";
+
 import Button from "../button";
-import ImageProfile from "../imageProfile";
+import ImageProfile from "../ImageProfile";
 import { useState, useReducer } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { TiBusinessCard } from "react-icons/ti";
@@ -13,11 +14,12 @@ import { ImMobile } from "react-icons/im";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { HTTP_POST } from "../../../libs/HTTP";
+import { useRouter } from "next/router";
 
 const RegisterPage = () => {
   const [tempPass, setTempPass] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
-
+  const router = useRouter();
   const handleTempPassChange = (e) => {
     setTempPass(e.target.value);
   };
@@ -67,18 +69,21 @@ const RegisterPage = () => {
     console.log(formState);
     formState.type = formState.type.toLowerCase();
     formState.imageProfile = uploadedFile;
-    await HTTP_POST(`users/`, formState);
+    const res = await HTTP_POST(`users/`, formState);
+    if (res.status === "OK") {
+      router.push("/login");
+    }
   };
 
   return (
     <div className={styles.RegisterPage}>
-      <h2 className={styles.Title_RegisterPage}>Accedi alla Moveeda!</h2>
+      <h1>Registrati a Moveeda!</h1>
 
       <form className={styles.Form} onSubmit={handleSubmit}>
         <label htmlFor="type" className={styles.Label}>
-          Voglio partecipare agli eventi o crearli?
+          Vuoi partecipare o creare eventi?
         </label>
-        <div className={styles.Box_Input_S}>
+        <div className={styles.Box_Input}>
           <select
             name="type"
             id=""
@@ -96,11 +101,9 @@ const RegisterPage = () => {
           </select>
         </div>
 
-        <label htmlFor="username" className={styles.Label}>
-          Username:{" "}
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Username"
             type="text"
             value={formState.username}
             onChange={(e) => {
@@ -111,11 +114,9 @@ const RegisterPage = () => {
         </div>
         {formState.type === "Business" ? (
           <>
-            <label htmlFor="businessName" className={styles.Label}>
-              Username Business:{" "}
-            </label>
             <div className={styles.Box_Input}>
               <Input
+                placeholder="Business username"
                 type="text"
                 value={formState.businessName}
                 onChange={(e) => {
@@ -129,11 +130,9 @@ const RegisterPage = () => {
           <></>
         )}
 
-        <label htmlFor="email" className={styles.Label}>
-          Email
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Email"
             type="text"
             value={formState.email}
             onChange={(e) => {
@@ -143,11 +142,9 @@ const RegisterPage = () => {
           />
         </div>
 
-        <label htmlFor="password" className={styles.Label}>
-          Password:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Password"
             type="password"
             value={tempPass}
             onChange={handleTempPassChange}
@@ -155,11 +152,9 @@ const RegisterPage = () => {
           />
         </div>
 
-        <label htmlFor="confirmPassword" className={styles.Label}>
-          Conferma password:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Conferma password"
             type="password"
             icon={<RiLockPasswordLine />}
             onChange={(e) => {
@@ -170,11 +165,9 @@ const RegisterPage = () => {
 
         <p>Le password devono corrispondere. Riprova</p>
 
-        <label htmlFor="name" className={styles.Label}>
-          Nome:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Nome"
             type="text"
             value={formState.name}
             onChange={(e) => {
@@ -184,11 +177,9 @@ const RegisterPage = () => {
           />
         </div>
 
-        <label htmlFor="surname" className={styles.Label}>
-          Cognome:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Cognome"
             type="text"
             value={formState.surname}
             onChange={(e) => {
@@ -203,11 +194,9 @@ const RegisterPage = () => {
           icon={<MdAddPhotoAlternate />}
         />
 
-        <label htmlFor="city" className={styles.Label}>
-          Città
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Città"
             type="text"
             value={formState.city}
             onChange={(e) => {
@@ -217,11 +206,9 @@ const RegisterPage = () => {
           />
         </div>
 
-        <label htmlFor="address" className={styles.Label}>
-          Indirizzo:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Indirizzo"
             type="text"
             value={formState.address}
             onChange={(e) => {
@@ -231,11 +218,9 @@ const RegisterPage = () => {
           />
         </div>
 
-        <label htmlFor="phoneNumber" className={styles.Label}>
-          Cellulare:
-        </label>
         <div className={styles.Box_Input}>
           <Input
+            placeholder="Cellulare"
             type="text"
             value={formState.phoneNumber}
             onChange={(e) => {

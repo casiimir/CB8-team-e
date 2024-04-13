@@ -13,6 +13,16 @@
     align-items: center;
     gap: 30px;
 
+    .Box_Input {
+      width: 90%;
+      height: 48px;
+      border-radius: 20px;
+      background-color: azure;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .SelectForm {
       width: 160px;
       height: 24px;

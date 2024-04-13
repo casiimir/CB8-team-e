@@ -1,26 +1,33 @@
 .LoginPage {
   margin: 100px auto;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 45px;
+  gap: 46px;
 
   .Form {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    gap: 10px;
   }
 
   .Box_Input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    width: 350px;
+    width: 90%;
+    height: 48px;
     border-radius: 20px;
-    background-color: #f0ffff;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .Box_Input {
+    max-width: 400px;
   }
 }

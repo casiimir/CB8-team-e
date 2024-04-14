@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.scss";
 
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { HTTP_GET } from "../../libs/HTTP";
 
 import Head from "next/head";
@@ -17,6 +18,11 @@ const Home = ({ session }) => {
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
   const [pageEvents, setPageEvents] = useState(1);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!localStorage.getItem("intro")) router.push("/intro");
+  }, []);
 
   useEffect(() => {
     fetch(`api/events/getEventsByCategory?category=${selectedTab}&page=1`)

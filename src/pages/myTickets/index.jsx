@@ -7,9 +7,12 @@ import Header from "@/components/header";
 import EventList from "@/components/eventList";
 import NavBar from "@/components/navBar";
 import Footer from "@/components/footer";
+import Pages from "@/components/pages";
 
 export default function MyTickets({ session }) {
   const [tickets, setTickets] = useState([]);
+  const [pageEvents, setPageEvents] = useState(1);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -18,20 +21,34 @@ export default function MyTickets({ session }) {
     }
     const getTickets = async () => {
       const tickets = await HTTP_GET(
-        `reservations/getUserReservations?userId=${session?.user?.id}`
+        `reservations/getUserReservations?userId=${session?.user?.id}&page=1`
       );
       setTickets(tickets);
     };
     getTickets();
   }, [session, router]);
 
+  const handlePageChange = (pageNumber) => {
+    setPageEvents(pageNumber);
+    fetch(
+      `api/reservations/getUserReservations?userId=${session?.user?.id}&page=${pageNumber}`
+    )
+      .then((res) => res.json())
+      .then((data) => setTickets(data));
+  };
+
   return (
     <>
       <Header />
       <EventList
         title={"Le mie prenotazioni"}
-        events={tickets}
+        events={tickets.data}
         endPoint={"ticket"}
+      />
+      <Pages
+        pagesNumber={tickets?.totalPages}
+        page={tickets?.currentPage}
+        setPage={handlePageChange}
       />
       <NavBar userType={session.user.type} />
       <Footer />

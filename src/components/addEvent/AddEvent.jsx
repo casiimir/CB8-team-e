@@ -52,7 +52,7 @@ const AddEvent = ({ userId }) => {
   useEffect(() => {
     const getCategories = async () => {
       const categories = await HTTP_GET("categories");
-      setCategories(categories);
+      setCategories(categories.data);
     };
     getCategories();
   }, []);

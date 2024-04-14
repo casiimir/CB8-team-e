@@ -30,27 +30,19 @@ const Home = ({ session }) => {
       .then((data) => setEvents(data));
   }, [selectedTab]);
 
-  // useEffect(() => {
-  //   fetch(
-  //     `api/events/getEventsByCategory?category=${selectedTab}&page=${pageEvents}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setEvents(data));
-  // }, [pageEvents]);
-
   const handlePageChange = (pageNumber) => {
-        setPageEvents(pageNumber);
-        fetch(
-              `api/events/getEventsByCategory?category=${selectedTab}&page=${pageNumber}`
-            )
-              .then((res) => res.json())
-              .then((data) => setEvents(data));
+    setPageEvents(pageNumber);
+    fetch(
+      `api/events/getEventsByCategory?category=${selectedTab}&page=${pageNumber}`
+    )
+      .then((res) => res.json())
+      .then((data) => setEvents(data));
   };
 
   useEffect(() => {
     const getCategories = async () => {
       const categories = await HTTP_GET("categories");
-      setCategories(categories);
+      setCategories(categories.data);
     };
     getCategories();
   }, []);
@@ -82,11 +74,13 @@ const Home = ({ session }) => {
           ))}
         </section>
         <EventList events={events.data} title={selectedTab} />
-        <Pages
-          pagesNumber={events?.totalPages}
-          page={events?.currentPage}
-          setPage={handlePageChange}
-        />
+        {events?.data?.length > 0 && (
+          <Pages
+            pagesNumber={events?.totalPages}
+            page={events?.currentPage}
+            setPage={handlePageChange}
+          />
+        )}
         <NavBar userType={session?.user?.type} userId={session?.users?.id} />
         <Footer />
       </main>

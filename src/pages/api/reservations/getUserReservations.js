@@ -4,6 +4,7 @@ import Event from "../../../../models/Event";
 
 export default async function handler(req, res) {
   const { method } = req;
+  const { page = 1, limit = 5 } = req.query;
 
   await dbConnect();
 
@@ -14,7 +15,15 @@ export default async function handler(req, res) {
 
   const reservations = await Reservation.find({
     userId: req.query.userId,
-  }).sort({ date: "asc" });
+  })
+    .sort({ date: "asc" })
+    .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .exec();
+
+  const count = await Reservation.find({
+    userId: req.query.userId,
+  }).countDocuments();
 
   const events = await Promise.all(
     reservations.map(async (reservation) => {
@@ -31,5 +40,10 @@ export default async function handler(req, res) {
     });
   }
 
-  return res.status(200).json({ status: "OK", data: events });
+  return res.status(200).json({
+    status: "OK",
+    data: events,
+    totalPages: Math.ceil(count / limit),
+    currentPage: page,
+  });
 }

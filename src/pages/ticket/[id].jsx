@@ -17,16 +17,14 @@ export default function Ticket({ session }) {
   useEffect(() => {
     const getTicket = async () => {
       HTTP_GET(`reservations/${router.query.id}`).then(async (ticket) => {
-        const eventInfo = await HTTP_GET(`events/${ticket?.eventId}`);
+        const eventInfo = await HTTP_GET(`events/${ticket?.data?.eventId}`);
 
         const tempTicket = {
-          ticketId: ticket?.eventId,
-          ticketsBooked: ticket?.ticketsBooked,
-          ...eventInfo,
+          ticketId: ticket?.data?.eventId,
+          ticketsBooked: ticket?.data?.ticketsBooked,
+          ...eventInfo?.data,
         };
-
         setTicket(tempTicket);
-        console.log(tempTicket);
       });
     };
 

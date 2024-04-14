@@ -14,7 +14,7 @@ const Hero = () => {
   useEffect(() => {
     const getEvents = async () => {
       const events = await HTTP_GET("events?limit=5");
-      setEvents(events);
+      setEvents(events.data);
     };
     getEvents();
   }, []);
@@ -38,16 +38,14 @@ const Hero = () => {
   return (
     <Container>
       <div className={styles.Slider}>
-        <div className={styles.Overlay} >
+        <div className={styles.Overlay}>
           <h5>{events[counter]?.title}</h5>
           <p>{events[counter]?.description}</p>
-   
         </div>
         <div className={styles.BackgroundImage}>
           <img
             src={`events/${events[counter]?.poster}`}
             alt={events[counter]?.title}
-           
           />
         </div>
         <div className={styles.Actions}>

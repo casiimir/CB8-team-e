@@ -15,7 +15,7 @@ export default function User({ session }) {
     const fetchUserData = async () => {
       try {
         const fetchedUserData = await HTTP_GET(`users/${session.user.id}`);
-        setUserData(fetchedUserData);
+        setUserData(fetchedUserData.data);
       } catch (error) {
         console.error("Errore durante il recupero dei dati utente:", error);
       }

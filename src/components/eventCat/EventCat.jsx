@@ -14,29 +14,26 @@ const EventCat = () => {
   useEffect(() => {
     const getCategories = async () => {
       const categories = await HTTP_GET("categories");
-      setCategoriesData(categories);
+      setCategoriesData(categories.data);
     };
     getCategories();
   }, []);
 
-  
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = async (pageNumber) => {
     setPageEvents(pageNumber);
-    fetch(
-          `api/events/getEventsByCategory?category=${categoryName}&page=${pageNumber}`
-        )
-          .then((res) => res.json())
-          .then((data) => setEvents(data));
-};
+    const events = HTTP_GET(
+      `events/getEventsByCategory?category=${categoryName}&page=${pageNumber}`
+    );
+    setEvents(events);
+  };
 
   const onHandleCategory = async (categoryName) => {
     setCategoryName(categoryName);
-    fetch(
-          `api/events/getEventsByCategory?category=${categoryName}&page=1`
-        )
-          .then((res) => res.json())
-          .then((data) => setEvents(data));
-};
+    const events = HTTP_GET(
+      `events/getEventsByCategory?category=${categoryName}&page=1`
+    );
+    setEvents(events);
+  };
 
   return (
     <>
@@ -59,17 +56,15 @@ const EventCat = () => {
       </div>
       {events?.data?.length > 0 && (
         <>
-        <EventList title={events.data[0].category} events={events.data} />
-        
-        <Pages
-          pagesNumber={events?.totalPages}
-          page={events?.currentPage}
-          setPage={handlePageChange}
-        />
-        </>
-      )
-      }
+          <EventList title={events.data[0].category} events={events.data} />
 
+          <Pages
+            pagesNumber={events?.totalPages}
+            page={events?.currentPage}
+            setPage={handlePageChange}
+          />
+        </>
+      )}
     </>
   );
 };

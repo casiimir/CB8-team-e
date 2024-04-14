@@ -5,7 +5,7 @@ import { HTTP_GET } from "../../../libs/HTTP";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useState } from "react";
 import Button from "../button";
-import  Pages from "../pages";
+import Pages from "../pages";
 
 const searchEvent = () => {
   const [inputValue, setInputValue] = useState("");
@@ -18,7 +18,7 @@ const searchEvent = () => {
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     const events = await HTTP_GET(`search?query=${inputValue}`);
-    setEventData(events);
+    setEventData(events.data);
     setShowEventResult(true);
     setShowEventCat(false);
   };
@@ -55,7 +55,7 @@ const searchEvent = () => {
             className={styles.BackArrow}
           />
         )}
-              </div>
+      </div>
     </>
   );
 };

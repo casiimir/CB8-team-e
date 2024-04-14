@@ -113,9 +113,11 @@ export default function Event({ session }) {
   useEffect(() => {
     const getEvent = async () => {
       HTTP_GET(`events/${router.query.id}`).then(async (eventData) => {
-        const organizer = await HTTP_GET(`users/${eventData?.organizerId}`);
+        const organizer = await HTTP_GET(
+          `users/${eventData?.data?.organizerId}`
+        );
         const actualEvent = {
-          ...eventData,
+          ...eventData?.data,
           organizer: organizer?.businessName,
         };
         setEvent(actualEvent);

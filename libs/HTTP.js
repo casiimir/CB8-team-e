@@ -14,7 +14,7 @@ const HTTP_GET = async (end_point, params = {}) => {
   const res = await fetch(`${BASE_URL}${end_point}${query}`);
   const data = await res.json();
 
-  return data.data;
+  return data;
 };
 
 const HTTP_POST = async (end_point, body, contentType = true) => {

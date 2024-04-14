@@ -20,7 +20,6 @@ export default async function handler(req, res) {
     reservations.map(async (reservation) => {
       const temp = await Event.findById(reservation.eventId);
       const obj = { ...temp?._doc, ticketId: reservation._id };
-      console.log(obj);
       return obj;
     })
   );

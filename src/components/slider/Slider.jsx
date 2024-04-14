@@ -5,6 +5,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 import Container from "../container";
 import { HTTP_GET } from "../../../libs/HTTP";
+import { useRouter } from "next/router";
 
 const Hero = () => {
   const [events, setEvents] = useState([]);
@@ -34,18 +35,19 @@ const Hero = () => {
   const handleNextClick = () => {
     setCounter((prev) => (prev + 1) % events.length);
   };
-
   return (
     <Container>
       <div className={styles.Slider}>
-        <div className={styles.Overlay}>
+        <div className={styles.Overlay} >
           <h5>{events[counter]?.title}</h5>
           <p>{events[counter]?.description}</p>
+   
         </div>
         <div className={styles.BackgroundImage}>
           <img
             src={`events/${events[counter]?.poster}`}
             alt={events[counter]?.title}
+           
           />
         </div>
         <div className={styles.Actions}>

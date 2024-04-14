@@ -3,10 +3,13 @@ import styles from "./index.module.scss";
 import EventList from "../eventList";
 import { useState, useEffect } from "react";
 import { HTTP_GET } from "../../../libs/HTTP";
+import Pages from "../pages";
 
 const EventCat = () => {
   const [categoriesData, setCategoriesData] = useState([{}]);
   const [events, setEvents] = useState([]);
+  const [pageEvents, setPageEvents] = useState(1);
+  const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
     const getCategories = async () => {
@@ -16,10 +19,24 @@ const EventCat = () => {
     getCategories();
   }, []);
 
+  
+  const handlePageChange = (pageNumber) => {
+    setPageEvents(pageNumber);
+    fetch(
+          `api/events/getEventsByCategory?category=${categoryName}&page=${pageNumber}`
+        )
+          .then((res) => res.json())
+          .then((data) => setEvents(data));
+};
+
   const onHandleCategory = async (categoryName) => {
-    const events = await HTTP_GET(`events/search?category=${categoryName}`);
-    setEvents(events);
-  };
+    setCategoryName(categoryName);
+    fetch(
+          `api/events/getEventsByCategory?category=${categoryName}&page=1`
+        )
+          .then((res) => res.json())
+          .then((data) => setEvents(data));
+};
 
   return (
     <>
@@ -40,9 +57,19 @@ const EventCat = () => {
           </div>
         ))}
       </div>
-      {events.length > 0 && (
-        <EventList title={events[0].category} events={events} />
-      )}
+      {events?.data?.length > 0 && (
+        <>
+        <EventList title={events.data[0].category} events={events.data} />
+        
+        <Pages
+          pagesNumber={events?.totalPages}
+          page={events?.currentPage}
+          setPage={handlePageChange}
+        />
+        </>
+      )
+      }
+
     </>
   );
 };

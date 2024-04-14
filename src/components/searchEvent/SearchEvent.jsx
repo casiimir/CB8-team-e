@@ -4,6 +4,7 @@ import EventList from "../eventList";
 import { HTTP_GET } from "../../../libs/HTTP";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useState } from "react";
+import Button from "../button";
 
 const searchEvent = () => {
   const [inputValue, setInputValue] = useState("");
@@ -38,13 +39,15 @@ const searchEvent = () => {
           onChange={onInputInsert}
           value={inputValue}
         />
-        <input type="submit" value="Cerca" className={styles.SearchEventBtn} />
+        <Button type="submit" textButton="Cerca" onClick={onHandleSubmit} />
       </form>
       <div className={styles.EventCatContainer}>
         {showEventCat && <EventCat />}
       </div>
       <div className={styles.EventsContainer}>
-        {eventData?.length > 0 && <EventList events={eventData} />}
+        {eventData?.length > 0 && (
+          <EventList title="Risultati" events={eventData} />
+        )}
         {showEventResult && (
           <FaCircleArrowLeft
             onClick={handleGoBack}

@@ -1,9 +1,10 @@
 @import "../../styles/colors.module.scss";
 
 .Button {
-  color: $text-color;
+  color: #fff;
+  font-weight: 700;
   background-color: $button-color;
-  border-radius: 20px;
+  border-radius: 8px;
   width: 140px;
   height: 40px;
   border: none;

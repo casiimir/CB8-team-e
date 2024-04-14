@@ -12,7 +12,9 @@ export default async function handler(req, res) {
     return res.status(405).end(`Metodo ${method} non accettato!`);
   }
 
-  const reservations = await Reservation.find({ userId: req.query.userId });
+  const reservations = await Reservation.find({
+    userId: req.query.userId,
+  }).sort({ date: "asc" });
 
   const events = await Promise.all(
     reservations.map(async (reservation) => {

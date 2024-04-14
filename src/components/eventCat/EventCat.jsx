@@ -17,7 +17,7 @@ const EventCat = () => {
   }, []);
 
   const onHandleCategory = async (categoryName) => {
-    const events = HTTP_GET(`/api/events/search?category=${categoryName}`);
+    const events = await HTTP_GET(`events/search?category=${categoryName}`);
     setEvents(events);
   };
 
@@ -30,17 +30,19 @@ const EventCat = () => {
             key={key}
             onClick={() => onHandleCategory(categoria.name)}
           >
-            <div className={styles.OverlayCardCat}>
-              <h4>{categoria.name}</h4>
-            </div>
             <img
               src={`categories/${categoria.background}`}
               alt={categoria.name}
             />
+            <div className={styles.OverlayCardCat}>
+              <h4>{categoria?.name?.toUpperCase()}</h4>
+            </div>
           </div>
         ))}
       </div>
-      {events.length > 0 && <EventList events={events} />}
+      {events.length > 0 && (
+        <EventList title={events[0].category} events={events} />
+      )}
     </>
   );
 };

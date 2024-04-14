@@ -11,19 +11,31 @@ import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
 import NavBar from "@/components/navBar";
 import Footer from "@/components/footer";
-
+import Pages from "@/components/pages";
 const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
+  const [pageEvents, setPageEvents] = useState(1);
 
   useEffect(() => {
-    const getCategories = async () => {
-      const events = await HTTP_GET(`events/search?category=${selectedTab}`);
-      setEvents(events);
-    };
-    getCategories();
+    fetch(`api/events/getEventsByCategory?category=${selectedTab}&page=1`)
+      .then((res) => res.json())
+      .then((data) => setEvents(data));
   }, [selectedTab]);
+
+  useEffect(() => {
+    fetch(
+      `api/events/getEventsByCategory?category=${selectedTab}&page=${pageEvents}`
+    )
+      .then((res) => res.json())
+      .then((data) => setEvents(data));
+  }, [pageEvents]);
+
+  const handlePageChange = (pageNumber) => {
+    console.log("sto cambiando pagina");
+    setPageEvents(pageNumber);
+  };
 
   useEffect(() => {
     const getCategories = async () => {
@@ -59,7 +71,12 @@ const Home = ({ session }) => {
             </TabButton>
           ))}
         </section>
-        <EventList events={events} title={selectedTab} />
+        <EventList events={events.data} title={selectedTab} />
+        <Pages
+          pagesNumber={events?.totalPages}
+          page={events?.currentPage}
+          setPage={handlePageChange}
+        />
         <NavBar userType={session?.user?.type} userId={session?.users?.id} />
         <Footer />
       </main>

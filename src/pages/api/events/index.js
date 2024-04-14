@@ -21,9 +21,9 @@ async function getAllEvents(req, res) {
 
   try {
     const events = await Event.find()
-    .limit(limit * 1)
-    .skip((page - 1) * limit)
-    .exec();
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
 
     const count = await Event.countDocuments();
 

@@ -30,17 +30,21 @@ const Home = ({ session }) => {
       .then((data) => setEvents(data));
   }, [selectedTab]);
 
-  useEffect(() => {
-    fetch(
-      `api/events/getEventsByCategory?category=${selectedTab}&page=${pageEvents}`
-    )
-      .then((res) => res.json())
-      .then((data) => setEvents(data));
-  }, [pageEvents]);
+  // useEffect(() => {
+  //   fetch(
+  //     `api/events/getEventsByCategory?category=${selectedTab}&page=${pageEvents}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setEvents(data));
+  // }, [pageEvents]);
 
   const handlePageChange = (pageNumber) => {
-    console.log("sto cambiando pagina");
-    setPageEvents(pageNumber);
+        setPageEvents(pageNumber);
+        fetch(
+              `api/events/getEventsByCategory?category=${selectedTab}&page=${pageNumber}`
+            )
+              .then((res) => res.json())
+              .then((data) => setEvents(data));
   };
 
   useEffect(() => {

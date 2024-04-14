@@ -8,7 +8,7 @@ export default function myEventsList({ session }) {
   return (
     <>
       <Header />
-      <MyEvents />
+      <MyEvents userId={session?.user?.id}/>
       <NavBar userType={session?.user?.type} />
       <Footer />
     </>

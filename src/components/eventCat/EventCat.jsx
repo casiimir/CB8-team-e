@@ -29,7 +29,7 @@ const EventCat = () => {
 
   const onHandleCategory = async (categoryName) => {
     setCategoryName(categoryName);
-    const events = HTTP_GET(
+    const events = await HTTP_GET(
       `events/getEventsByCategory?category=${categoryName}&page=1`
     );
     setEvents(events);

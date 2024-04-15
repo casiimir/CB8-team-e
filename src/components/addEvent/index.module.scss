@@ -17,17 +17,19 @@
       width: 90%;
       height: 48px;
       border-radius: 20px;
-      background-color: azure;
+      border: 1px solid #111;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .Select {
-      width: 90%;
+      width: 99%;
       height: 38px;
       border-radius: 20px;
       padding: 10px 20px;
+      border: 0;
+      outline: none;
     }
   }
 }

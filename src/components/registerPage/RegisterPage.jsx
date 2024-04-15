@@ -19,12 +19,12 @@ import { useRouter } from "next/router";
 const RegisterPage = () => {
   const [tempPass, setTempPass] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [showModal, setShowModal] = useState(false); 
-  const [modalStatus, setModalStatus] = useState(""); 
-  const [modalTitle, setModalTitle] = useState(""); 
+  const [showModal, setShowModal] = useState(false);
+  const [modalStatus, setModalStatus] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
   const [modalText, setModalText] = useState("");
   const router = useRouter();
-  
+
   const handleTempPassChange = (e) => {
     setTempPass(e.target.value);
   };
@@ -86,22 +86,23 @@ const RegisterPage = () => {
       setModalStatus("Errore");
       setModalTitle("Qualcosa è andato storto!");
       setModalText("Tutti i campi sono obbligatori, riprova!");
-         }
+    }
   };
 
-    const buttonHandleSumbit = () => {
- switch (modalStatus) {
-  case "Successo":
-  router.push("/login");
-  break;
-  case "Errore":
-    setShowModal(false)
-    break;
-  case "Attenzione!":
-  setShowModal(false)
-  break;
-  default:
- }}
+  const buttonHandleSumbit = () => {
+    switch (modalStatus) {
+      case "Successo":
+        router.push("/login");
+        break;
+      case "Errore":
+        setShowModal(false);
+        break;
+      case "Attenzione!":
+        setShowModal(false);
+        break;
+      default:
+    }
+  };
 
   return (
     <div className={styles.RegisterPage}>
@@ -268,8 +269,6 @@ const RegisterPage = () => {
           buttonHandleSubmit={buttonHandleSumbit}
         />
       )}
-
-
     </div>
   );
 };

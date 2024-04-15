@@ -142,26 +142,32 @@ export default function Event({ session }) {
           <div className={styles.Wrapper}>
             <BannerEvent img={event.poster} title={event.title} />
             <EventDetails event={event} />
-            <EventMap address={event.address} />
           </div>
-          <div className={styles.Prenota}>
-            {event.capacity > 0 ? (
-              <>
-                <Input
-                  type={"number"}
-                  required={true}
-                  value={ticketsNumber}
-                  onChange={handleSetTicketNumber}
-                />
-                <Button textButton={"Prenota"} onClick={onClickPrenota} />
-              </>
-            ) : (
-              <p>
-                {" "}
-                {event.title} ha esaurito il numero di prenotazioni disponibili!{" "}
-                <ImSad />{" "}
-              </p>
-            )}
+          <div className={styles.MapAndBook}>
+            <div className={styles.MapContainer}>
+              <EventMap address={event.address} />
+            </div>
+            <div>
+              <div className={styles.Prenota}>
+                {event.capacity > 0 ? (
+                  <>
+                    <Input
+                      type={"number"}
+                      required={true}
+                      value={ticketsNumber}
+                      onChange={handleSetTicketNumber}
+                    />
+                    <Button textButton={"Prenota"} onClick={onClickPrenota} />
+                  </>
+                ) : (
+                  <p>
+                    {" "}
+                    {event.title} ha esaurito il numero di prenotazioni
+                    disponibili! <ImSad />{" "}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       ) : (

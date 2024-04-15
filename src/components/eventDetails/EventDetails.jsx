@@ -25,17 +25,20 @@ const EventDetails = ({ event }) => {
             </div>
           </div>
         </div>
-        <div className={styles.Capacity}>
-          <p>
-          <FaTicket /> {event.capacity > 0 ? `${event.capacity} posti rimanenti` : 'Evento Sold Out!'}
-          </p>
-        </div>
       </div>
 
       <div className={styles.Location}>
         <p>
           <FaShop /> {event.place}
         </p>
+        <div className={styles.Capacity}>
+          <p className={styles.CapacityText}>
+            <FaTicket />{" "}
+            {event.capacity > 0
+              ? `${event.capacity} posti rimanenti`
+              : "Evento Sold Out!"}
+          </p>
+        </div>
       </div>
 
       <div className={styles.Description}>

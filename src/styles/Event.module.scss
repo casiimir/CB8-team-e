@@ -1,10 +1,21 @@
 .Event {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
-  .Wrapper {
+  .Wrapper,
+  .MapContainer {
     width: 90%;
     margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1900px) {
+    .Wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 20px;
+    }
   }
 }
 
@@ -19,5 +30,34 @@
     width: 10%;
     border: 1 px solid violet;
     background-color: greenyellow;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .MapAndBook {
+    width: 100%;
+    height: 400px;
+    background-color: #0d0d0d;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .MapContainer {
+      width: 100%;
+    }
+
+    h2 {
+      color: #ffffff;
+    }
+
+    .MapContainer {
+      max-width: 910px;
+    }
+
+    .Prenota {
+      margin-right: 280px;
+      max-width: 400px;
+    }
   }
 }

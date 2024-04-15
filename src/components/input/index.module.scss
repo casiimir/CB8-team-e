@@ -1,5 +1,5 @@
 .BoxInput {
-  width: 80%;
+  width: 100%;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -17,8 +17,8 @@
     width: 100%;
     height: 30px;
     padding: 10px;
+    background-color: transparent;
     border-radius: 20px;
-    background-color: #f0ffff;
     border: none;
     outline: none;
   }

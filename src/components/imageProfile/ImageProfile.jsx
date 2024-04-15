@@ -43,7 +43,11 @@ const ImageProfile = ({ onImageChange, type = "users" }) => {
       </div>
       <div className={styles.Icon}>
         {selectedImage && (
-          <img src={URL.createObjectURL(selectedImage)} alt="Selected Image" />
+          <img
+            src={URL.createObjectURL(selectedImage)}
+            alt="Selected Image"
+            className={styles.ImageProfile}
+          />
         )}
       </div>
     </>

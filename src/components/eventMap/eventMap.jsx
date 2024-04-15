@@ -5,6 +5,7 @@ import {
   Map,
   Marker,
 } from "@vis.gl/react-google-maps";
+
 import Loader from "../loader";
 
 const EventMap = ({ address }) => {

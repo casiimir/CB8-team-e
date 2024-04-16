@@ -6,46 +6,51 @@ import { useRouter } from "next/router";
 import { HTTP_GET } from "../../libs/HTTP";
 
 import Head from "next/head";
-import Header from "@/components/header";
-import Slider from "@/components/slider";
+import Header from "../components/header";
+import Slider from "../components/slider";
 import TabButton from "../components/tabButton";
 import EventList from "../components/eventList";
-import NavBar from "@/components/navBar";
-import Footer from "@/components/footer";
-import Pages from "@/components/pages";
+import NavBar from "../components/navBar";
+import Footer from "../components/footer";
+import Pageable from "../components/pageable";
+import Loader from "../components/loader";
+
 const Home = ({ session }) => {
   const [selectedTab, setSelectedTab] = useState("Museec");
   const [categories, setCategories] = useState([]);
   const [events, setEvents] = useState([]);
-  const [pageEvents, setPageEvents] = useState(1);
+  const [isLoading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     if (!localStorage.getItem("intro")) router.push("/intro");
-  }, []);
 
-  useEffect(() => {
-    fetch(`api/events/getEventsByCategory?category=${selectedTab}&page=1`)
-      .then((res) => res.json())
-      .then((data) => setEvents(data));
-  }, [selectedTab]);
-
-  const handlePageChange = (pageNumber) => {
-    setPageEvents(pageNumber);
-    fetch(
-      `api/events/getEventsByCategory?category=${selectedTab}&page=${pageNumber}`
-    )
-      .then((res) => res.json())
-      .then((data) => setEvents(data));
-  };
-
-  useEffect(() => {
     const getCategories = async () => {
       const categories = await HTTP_GET("categories");
       setCategories(categories.data);
     };
     getCategories();
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    const getEvents = async () => {
+      const events = await HTTP_GET(
+        `events/getEventsByCategory?category=${selectedTab}&page=1`
+      );
+      setEvents(events);
+      setLoading(false);
+    };
+    getEvents();
+  }, [selectedTab]);
+
+  const handlePageChange = async (pageNumber) => {
+    const events = await HTTP_GET(
+      `events/getEventsByCategory?category=${selectedTab}&page=${pageNumber}`
+    );
+    setEvents(events);
+    setLoading(false);
+  };
 
   const handleSelect = (selectedButton) => {
     setSelectedTab(selectedButton);
@@ -60,7 +65,7 @@ const Home = ({ session }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header />
+        <Header userType={session?.user?.type} />
         <Slider />
         <section className={styles.SectionTab}>
           {categories.map((category, key) => (
@@ -73,13 +78,17 @@ const Home = ({ session }) => {
             </TabButton>
           ))}
         </section>
-        <EventList events={events.data} title={selectedTab} />
-        {events?.data?.length > 0 && (
-          <Pages
-            pagesNumber={events?.totalPages}
-            page={events?.currentPage}
-            setPage={handlePageChange}
-          />
+        {!isLoading ? (
+          <>
+            <EventList events={events.data} title={selectedTab} />
+            <Pageable
+              pagesNumber={events?.totalPages}
+              page={events?.currentPage}
+              setPage={handlePageChange}
+            />
+          </>
+        ) : (
+          <Loader />
         )}
         <NavBar userType={session?.user?.type} userId={session?.users?.id} />
         <Footer />

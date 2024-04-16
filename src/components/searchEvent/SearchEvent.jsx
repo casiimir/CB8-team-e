@@ -1,11 +1,10 @@
 import styles from "./index.module.scss";
-import EventCat from "../eventCat";
-import EventList from "../eventList";
 import { HTTP_GET } from "../../../libs/HTTP";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useState } from "react";
+import EventCat from "../eventCat";
+import EventList from "../eventList";
 import Button from "../button";
-import Pages from "../pages";
 
 const searchEvent = () => {
   const [inputValue, setInputValue] = useState("");

@@ -1,7 +1,6 @@
 import styles from "./index.module.scss";
 import EventCard from "../eventCard";
-import Loader from "../loader";
-const EventsList = ({ title, events, endPoint }) => {
+const EventsList = ({ title, events, endPoint = "event" }) => {
   return (
     <div>
       <h3 className={styles.SelectedCatName}>{title.toUpperCase()}</h3>
@@ -11,7 +10,11 @@ const EventsList = ({ title, events, endPoint }) => {
             <EventCard key={key} event={event} endPoint={endPoint} />
           ))
         ) : (
-          <Loader />
+          <div className={styles.NoEvents}>
+            <p>
+              Non ci sono {endPoint === "event" ? "eventi" : "prenotazioni"}...
+            </p>
+          </div>
         )}
       </div>
     </div>

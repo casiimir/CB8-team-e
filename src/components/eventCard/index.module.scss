@@ -28,7 +28,7 @@
       color: #bbb;
     }
     h6 {
-      color: #9e6aff
+      color: #9e6aff;
     }
     h3 {
       font-size: 16px;
@@ -39,14 +39,45 @@
       flex-direction: row;
       gap: 38px;
       font-size: 0.7em;
-
     }
-
   }
 }
 
 @media screen and (min-width: 992px) {
   .Event {
-    max-width: 400px;
+    flex: 0 0 30%;
+    height: auto;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    .PosterContainer {
+      width: 100%;
+
+      img {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        max-height: 400px;
+      }
+    }
+
+    .EventInfo {
+      width: 100%;
+      padding: 10px 15px;
+      gap: 1rem;
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      a {
+        font-size: 1.3rem;
+      }
+    }
   }
 }

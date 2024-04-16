@@ -1,42 +1,46 @@
 import { HTTP_GET } from "../../../libs/HTTP";
 import { useState, useEffect } from "react";
-import EventList from "@/components/eventList";
-import Pages from "@/components/pages";
+import EventList from "../eventList";
+import Pageable from "../pageable";
+import Loader from "../loader";
 
-const MyEvents = ({userId}) => {
+const MyEvents = ({ userId }) => {
   const [myEvents, setMyEvents] = useState([]);
-  const [pageEvents, setPageEvents] = useState(1);
-
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`api/events/search?organizerId=${userId}`)
-      .then((res) => res.json())
-      .then((data) => setMyEvents(data));
-  }  ,
-   []);
+    const getEvents = async () => {
+      const events = await HTTP_GET(`events/search?organizerId=${userId}`);
+      setMyEvents(events);
+      setLoading(false);
+    };
+    getEvents();
+  }, []);
 
-  
-  const handlePageChange = (pageNumber) => {
-    setPageEvents(pageNumber);
-    fetch(
-          `api/events/search?organizerId=${userId}&page=${pageNumber}`
-        )
-          .then((res) => res.json())
-          .then((data) => setMyEvents(data));
-};
-
-
+  const handlePageChange = async (pageNumber) => {
+    const events = await HTTP_GET(
+      `events/search?organizerId=${userId}&page=${pageNumber}`
+    );
+    setMyEvents(events);
+    setLoading(false);
+  };
 
   return (
-  <> 
-  <EventList title={"i miei eventi"} events={myEvents.data} />
-  < Pages 
-  pagesNumber={myEvents?.totalPages}
-  page={myEvents?.currentPage}
-  setPage={handlePageChange}
-  />
-  </>
-  )
+    <>
+      {!isLoading ? (
+        <>
+          <EventList title={"i miei eventi"} events={myEvents.data} />
+          <Pageable
+            pagesNumber={myEvents?.totalPages}
+            page={myEvents?.currentPage}
+            setPage={handlePageChange}
+          />
+        </>
+      ) : (
+        <Loader />
+      )}
+    </>
+  );
 };
 
 export default MyEvents;

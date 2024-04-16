@@ -72,3 +72,28 @@
     font-size: 15px;
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .Details {
+    max-width: 1880px;
+    padding: 20px;
+
+    .MainInfo {
+      h3 {
+        font-size: 3rem;
+      }
+
+      .Info {
+        font-size: 1.5rem;
+      }
+    }
+
+    .Location {
+      font-size: 1.5rem;
+    }
+
+    .Description {
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -1,11 +1,9 @@
 import styles from "./index.module.scss";
-
 import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-
-import Container from "../container";
 import { HTTP_GET } from "../../../libs/HTTP";
-import { useRouter } from "next/router";
+import Link from "next/link";
+import Container from "../container";
 
 const Hero = () => {
   const [events, setEvents] = useState([]);
@@ -41,6 +39,12 @@ const Hero = () => {
         <div className={styles.Overlay}>
           <h5>{events[counter]?.title}</h5>
           <p>{events[counter]?.description}</p>
+          <Link
+            className={styles.ShowMore}
+            href={`event/${events[counter]?._id}`}
+          >
+            Scopri di più...
+          </Link>
         </div>
         <div className={styles.BackgroundImage}>
           <img

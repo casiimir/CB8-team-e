@@ -1,7 +1,5 @@
 import styles from "./index.module.scss";
-
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import {
@@ -17,8 +15,6 @@ import { RiLoginBoxFill } from "react-icons/ri";
 
 const NavBar = ({ userType }) => {
   const router = useRouter();
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
 
   return (
     <nav className={styles.NavBar}>

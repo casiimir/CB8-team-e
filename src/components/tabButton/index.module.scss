@@ -41,9 +41,16 @@
   }
 }
 
-// Start responsives
-@media screen and (min-width: 1900px) {
-  .TabBtn {
+@media only screen and (min-width: 768px) {
+  .TabItems {
     width: 80%;
+    margin-top: 0;
+    height: 70px;
+
+    .TabBtn {
+      width: 100%;
+      height: 100%;
+      font-size: 1.3rem;
+    }
   }
 }

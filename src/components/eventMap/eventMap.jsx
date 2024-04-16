@@ -1,3 +1,4 @@
+import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
 import {
   APIProvider,
@@ -41,7 +42,7 @@ function Geocoding({ address }) {
 
   return (
     <Map
-      style={{ width: "100%", height: "20vh", borderRadius: "8px" }}
+      className={styles.Map}
       center={{ lat: _lat, lng: _lng }}
       zoom={15}
       gestureHandling={"greedy"}

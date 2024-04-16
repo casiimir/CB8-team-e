@@ -1,4 +1,4 @@
-import styles from "@/styles/Intro.module.scss";
+import styles from "../../styles/Intro.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
 

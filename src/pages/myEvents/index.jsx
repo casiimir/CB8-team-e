@@ -1,14 +1,14 @@
-import Header from "@/components/header";
-import MyEvents from "@/components/myEvents";
-import NavBar from "@/components/navBar";
+import Header from "../../components/header";
+import MyEvents from "../../components/myEvents";
+import NavBar from "../../components/navBar";
+import Footer from "../../components/footer";
 import { getSession } from "next-auth/react";
-import Footer from "@/components/footer";
 
 export default function myEventsList({ session }) {
   return (
     <>
-      <Header />
-      <MyEvents userId={session?.user?.id}/>
+      <Header userType={session?.user?.type} />
+      <MyEvents userId={session?.user?.id} />
       <NavBar userType={session?.user?.type} />
       <Footer />
     </>

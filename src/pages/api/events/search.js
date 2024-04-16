@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   async function getAllEvents(req, res) {
-    const { page = 1, limit = 5, ...remainingParams } = req.query;
+    const { page = 1, limit = 6, ...remainingParams } = req.query;
 
     try {
       const events = await Event.find({ $and: [remainingParams] })

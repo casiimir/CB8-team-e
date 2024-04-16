@@ -3,11 +3,11 @@ import { HTTP_GET } from "../../../libs/HTTP";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import Header from "@/components/header";
-import EventList from "@/components/eventList";
-import NavBar from "@/components/navBar";
-import Footer from "@/components/footer";
-import Pages from "@/components/pages";
+import Header from "../../components/header";
+import EventList from "../../components/eventList";
+import NavBar from "../../components/navBar";
+import Footer from "../../components/footer";
+import Pageable from "../../components/pageable";
 
 export default function MyTickets({ session }) {
   const [tickets, setTickets] = useState([]);
@@ -39,13 +39,13 @@ export default function MyTickets({ session }) {
 
   return (
     <>
-      <Header />
+      <Header userType={session?.user?.type} />
       <EventList
         title={"Le mie prenotazioni"}
         events={tickets.data}
         endPoint={"ticket"}
       />
-      <Pages
+      <Pageable
         pagesNumber={tickets?.totalPages}
         page={tickets?.currentPage}
         setPage={handlePageChange}

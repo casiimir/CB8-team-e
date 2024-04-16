@@ -4,7 +4,7 @@ import Event from "../../../../models/Event";
 
 export default async function handler(req, res) {
   const { method } = req;
-  const { page = 1, limit = 5 } = req.query;
+  const { page = 1, limit = 6 } = req.query;
 
   await dbConnect();
 

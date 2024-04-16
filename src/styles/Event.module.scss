@@ -2,17 +2,21 @@
   width: 100%;
   min-height: 100vh;
 
+  .MapAndBook {
+    padding-bottom: 3.5rem;
+  }
+
   .Wrapper,
   .MapContainer {
     width: 90%;
     margin: 0 auto;
   }
 
-  @media screen and (min-width: 1900px) {
+  @media only screen and (min-width: 768px) {
     .Wrapper {
       width: 100%;
       display: flex;
-      flex-direction: row-reverse;
+      flex-direction: column;
       align-items: center;
       gap: 20px;
     }
@@ -23,24 +27,31 @@
   width: 90%;
   margin: 20px auto;
   display: flex;
+  gap: 5px;
   justify-content: space-between;
   align-items: center;
 
-  input {
-    width: 10%;
-    border: 1 px solid violet;
-    background-color: greenyellow;
+  .BoxInput {
+    width: 40%;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    width: 60%;
   }
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 768px) {
   .MapAndBook {
     width: 100%;
-    height: 400px;
-    background-color: #0d0d0d;
-    padding: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column-reverse;
+    align-items: flex-start;
     justify-content: space-between;
 
     .MapContainer {
@@ -51,13 +62,13 @@
       color: #ffffff;
     }
 
-    .MapContainer {
-      max-width: 910px;
-    }
-
     .Prenota {
-      margin-right: 280px;
-      max-width: 400px;
+      width: 100%;
+      max-width: 1880px;
+
+      .BoxInput {
+        width: 50%;
+      }
     }
   }
 }

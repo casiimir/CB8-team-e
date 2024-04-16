@@ -16,26 +16,26 @@ const LoginPage = () => {
   const router = useRouter();
 
   const [statusModal, setStatusModal] = useState("");
-  const [modalTitle, setModalTitle] = useState(""); 
+  const [modalTitle, setModalTitle] = useState("");
   const [modalText, setModalText] = useState("");
   const [isToggled, setIsToggled] = useState(false);
 
   const handleSetUsername = (e) => setUsername(e.target.value);
   const handleSetPassword = (e) => setPassword(e.target.value);
-  
+
   const buttonHandleSubmit = () => {
     switch (statusModal) {
-     case "Errore":
-      
-      setIsToggled(false)
-       break;
-     case "Attenzione":
-      setIsToggled(false)
-     break;
-     default:
-    }}  
-    
-    const handleSumbit = async (e) => {
+      case "Errore":
+        setIsToggled(false);
+        break;
+      case "Attenzione":
+        setIsToggled(false);
+        break;
+      default:
+    }
+  };
+
+  const handleSumbit = async (e) => {
     e.preventDefault();
 
     const result = await signIn("credentials", {
@@ -43,24 +43,26 @@ const LoginPage = () => {
       username,
       password,
     });
-    
+
     if (!result.error) {
       router.push("/");
     } else {
-      setIsToggled(true); 
+      setIsToggled(true);
       setStatusModal("Errore");
       setModalTitle("Errore di autenticazione");
       setModalText("Username o password errati");
     }
-  };   
+  };
   return (
     <div className={styles.LoginPage}>
-      {isToggled && <Modal 
-      status={statusModal}
-      title={modalTitle}
-      text={modalText}
-      buttonHandleSubmit={buttonHandleSubmit}
-       />}
+      {isToggled && (
+        <Modal
+          status={statusModal}
+          title={modalTitle}
+          text={modalText}
+          buttonHandleSubmit={buttonHandleSubmit}
+        />
+      )}
       <h2>Accedi alla Moveeda!</h2>
       <form className={styles.Form} onSubmit={handleSumbit}>
         <div className={styles.Box_Input}>
@@ -86,8 +88,8 @@ const LoginPage = () => {
             placeholder="Password"
           />
         </div>
+        <Button textButton="Accedi" onClick={handleSumbit} type="submit" />
       </form>
-      <Button textButton="Accedi" onClick={handleSumbit} type="submit" />
       <p>
         Non hai un account Moveeda?? <a href="./register">Registrati</a>
       </p>

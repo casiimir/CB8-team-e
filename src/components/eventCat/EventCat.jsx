@@ -1,14 +1,12 @@
 import styles from "./index.module.scss";
-
-import EventList from "../eventList";
-import { useState, useEffect } from "react";
 import { HTTP_GET } from "../../../libs/HTTP";
-import Pages from "../pages";
+import { useState, useEffect } from "react";
+import EventList from "../eventList";
+import Pageable from "../pageable";
 
 const EventCat = () => {
-  const [categoriesData, setCategoriesData] = useState([{}]);
-  const [events, setEvents] = useState([]);
-  const [pageEvents, setPageEvents] = useState(1);
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [events, setEvents] = useState({});
   const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
@@ -20,8 +18,7 @@ const EventCat = () => {
   }, []);
 
   const handlePageChange = async (pageNumber) => {
-    setPageEvents(pageNumber);
-    const events = HTTP_GET(
+    const events = await HTTP_GET(
       `events/getEventsByCategory?category=${categoryName}&page=${pageNumber}`
     );
     setEvents(events);
@@ -32,6 +29,7 @@ const EventCat = () => {
     const events = await HTTP_GET(
       `events/getEventsByCategory?category=${categoryName}&page=1`
     );
+    setCategoryName(categoryName);
     setEvents(events);
   };
 
@@ -58,7 +56,7 @@ const EventCat = () => {
         <>
           <EventList title={events.data[0].category} events={events.data} />
 
-          <Pages
+          <Pageable
             pagesNumber={events?.totalPages}
             page={events?.currentPage}
             setPage={handlePageChange}

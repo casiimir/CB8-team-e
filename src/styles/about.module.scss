@@ -44,25 +44,31 @@
     p {
       color: #bbb;
     }
+  }
 
-    .Social {
-      width: 60%;
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-around;
+  .Social {
+    width: 60%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
 
-      img {
-        width: 40px;
-        height: 40px;
-      }
+    img {
+      width: 40px;
+      height: 40px;
     }
   }
 }
 
 @media screen and (min-width: 768px) {
   .AboutWrapper {
-    height: 67vh;
     flex-direction: row;
     justify-content: center;
+
+    .CardAbout {
+      width: 500px;
+      height: 540px;
+      align-items: center;
+      justify-content: space-around;
+    }
   }
 }

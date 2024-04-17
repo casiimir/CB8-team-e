@@ -9,6 +9,7 @@ import {
   FaCircleUser,
   FaSquarePlus,
   FaTableList,
+  FaQuestion,
 } from "react-icons/fa6";
 
 import { RiLoginBoxFill } from "react-icons/ri";
@@ -103,6 +104,11 @@ const NavBar = ({ userType }) => {
               <RiLoginBoxFill />
             </Link>
           )}
+        </li>
+        <li>
+          <Link href="/about">
+            <FaQuestion />
+          </Link>
         </li>
       </ul>
     </nav>

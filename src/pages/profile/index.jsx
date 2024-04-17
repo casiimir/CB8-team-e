@@ -42,7 +42,7 @@ export default function User({ session }) {
       <Header userType={session?.user?.type} />
       <div className={styles.UserWrapper}>
         <div className={styles.UserBanner}>
-          <img src="/userBanner.jpg" alt="" />
+          <img src="/userBanner.jpg" alt="banner" />
         </div>
         <div className={styles.UserPage}>
           <div className={styles.User}>

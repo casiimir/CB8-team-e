@@ -8,8 +8,8 @@
   gap: 8px;
 
   .EventCardCat {
-    width: 49%;
     height: 150px;
+    flex: 1 0 40%;
     position: relative;
     display: flex;
     align-items: center;

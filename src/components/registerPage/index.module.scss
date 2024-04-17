@@ -20,6 +20,7 @@
 
   .Form {
     width: 90%;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,8 +42,14 @@
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
+
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+    }
   }
 
   .Select {
@@ -59,19 +66,13 @@
   }
 }
 
-@media screen and (min-width: 992px) {
-  .RegisterPage {
-    margin-top: 100px;
-  }
-}
-
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .Box_Input {
     max-width: 400px;
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .Select {
     max-width: 400px;
   }
@@ -83,12 +84,10 @@
 
     .RegisterWrapper {
       width: 100%;
-      height: 100%;
       display: flex;
 
       .RegisterBanner {
         width: 60%;
-        height: 90vh;
         display: block;
 
         img {

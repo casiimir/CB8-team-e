@@ -98,7 +98,7 @@ export default function Event({ session }) {
     if (!session) {
       setIsToggled(true);
       setStatusModal("Errore");
-      setModalTitle("Iscrivi o Accedi");
+      setModalTitle("Iscriviti o Accedi");
       setTextModal("Bisogna essere registrati per prenotare la MOVEEDA!");
       return;
     }
